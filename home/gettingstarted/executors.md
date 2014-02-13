@@ -82,7 +82,7 @@ perform a GC cycle if `exec.reinstantiation.fullGC` is set to `true`.
 
 `Measurer.OutlierElimination` is another mixin measurer, which analyzes the measurements returned by other
 measurers and possibly discards and repeats measurements.
-It is described in more detail in the [regression testing section](/scalameter/home/gettingstarted/regressions/).
+It is described in more detail in the [regression testing section](/home/gettingstarted/regressions/).
 
 `Measurer.AbsoluteNoise` is a mixin measurer which adds absolute noise to measurements.
 
@@ -158,7 +158,7 @@ You can take a look at the ScalaMeter API or source code to figure out how diffe
 
 
 <div class="imagenoframe">
-  <img src="/scalameter/resources/images/logo-yellow-small.png"></img>
+  <img src="/resources/images/logo-yellow-small.png"></img>
 </div>
 
 
