@@ -392,11 +392,11 @@ When trying to figure out the cause of an instability, always try to ask questio
 - does my test inherently trigger garbage collection cycles?
 - does my test allocate too much memory?
 
-In the next section we examine different [executors](/scalameter/home/gettingstarted/executors/) in more detail.
+In the next section we examine different [executors](/home/gettingstarted/executors/) in more detail.
 
 
 <div class="imagenoframe">
-  <img src="/scalameter/resources/images/logo-yellow-small.png"></img>
+  <img src="/resources/images/logo-yellow-small.png"></img>
 </div>
 
 
