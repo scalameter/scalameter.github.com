@@ -34,6 +34,15 @@ Open `build.sbt` again and add the following lines:
       
         logBuffered := false
 
+Latest sbt versions run tests in parallel by default.
+If there are multiple regression tests in project, than they will be executed in parallel during `sbt test`, potentially making results useless.
+
+To disable this behaviour:
+
+    parallelExecution in Test := false
+
+should be included in build configuration.
+
 And voila -- you should be able to run ScalaMeter from the SBT shell now.
 
 To run all the tests:
