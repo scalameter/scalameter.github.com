@@ -37,7 +37,8 @@ ScalaMeter source code is available at [GitHub](https://github.com/axel22/scalam
 
 ## Snapshot version
 
-To access the cutting-edge ScalaMeter snapshots and use the latest ScalaMeter features, enter the following to your `build.sbt`:
+To access the cutting-edge ScalaMeter snapshots and use the latest ScalaMeter features from the latest pull request,
+enter the following to your `build.sbt`:
 
     resolvers +=
       "Sonatype OSS Snapshots" at "https://oss.sonatype.org/content/repositories/snapshots"
