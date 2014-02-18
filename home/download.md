@@ -29,9 +29,14 @@ If you're using [SBT](/home/gettingstarted/sbt/), just add the following lines t
     
     parallelExecution in Test := false
 
+
 ## Source code
 
 ScalaMeter source code is available at [GitHub](https://github.com/axel22/scalameter).
 
+
+## Snapshot version
+
+You can see the current [build status here](https://travis-ci.org/scalameter/scalameter).
 
 
