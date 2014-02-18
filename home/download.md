@@ -39,4 +39,5 @@ ScalaMeter source code is available at [GitHub](https://github.com/axel22/scalam
 
 You can see the current [build status here](https://travis-ci.org/scalameter/scalameter).
 
+[![Build Status](https://travis-ci.org/scalameter/scalameter.png?branch=master)](https://travis-ci.org/scalameter/scalameter)
 
