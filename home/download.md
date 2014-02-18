@@ -26,7 +26,8 @@ If you're using [SBT](/home/gettingstarted/sbt/), just add the following lines t
     libraryDependencies += "com.github.axel22" %% "scalameter" % "0.4"
 
     testFrameworks += new TestFramework("org.scalameter.ScalaMeterFramework")
-
+    
+    parallelExecution in Test := false
 
 ## Source code
 
