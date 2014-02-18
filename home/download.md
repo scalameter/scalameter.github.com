@@ -39,9 +39,11 @@ ScalaMeter source code is available at [GitHub](https://github.com/axel22/scalam
 
 To access the cutting-edge ScalaMeter snapshots and use the latest ScalaMeter features, enter the following to your `build.sbt`:
 
-    resolvers += "Sonatype OSS Snapshots" at "https://oss.sonatype.org/content/repositories/snapshots"
+    resolvers +=
+      "Sonatype OSS Snapshots" at "https://oss.sonatype.org/content/repositories/snapshots"
     
-    libraryDependencies += "com.github.axel22" %% "scalameter" % "0.5-SNAPSHOT" % "test"
+    libraryDependencies +=
+      "com.github.axel22" %% "scalameter" % "0.5-SNAPSHOT" % "test"
     
     testFrameworks += new TestFramework("org.scalameter.ScalaMeterFramework")
     
