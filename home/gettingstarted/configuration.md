@@ -16,6 +16,21 @@ an SBT project from now on.
 This might be a good idea to read up on [SBT integration](/home/gettingstarted/sbt/)
 if you haven't already.
 
+
+## Predefined configurations
+
+Since ScalaMeter 0.5, the following predefined test configurations exist to help you get started quickly:
+
+- `PerformanceTest.QuickBenchmark` -- explained in detail in the [simple microbenchmark section](/home/gettingstarted/simplemicrobenchmark)
+- `PerformanceTest.MicroBenchmark` -- runs a separate JVM and logs outputs to console, but generates no HTML document and does no regression testing
+- `PerformanceTest.OnlineRegressionReport` -- runs in a separate JVM, generates a HTML report ready to be hosted online, and does regression testing
+- `PerformanceTest.OfflineRegressionReport` -- runs in a separate JVM, generates a HTML report ready to be viewed in your browser from `file://` schema, and does regression testing
+- `PerformanceTest.OfflineReport` -- runs in a separate JVM, generates a HTML report ready to be hosted online, and does no regression testing
+
+Simply extend one of these traits to start writing the test with the desired functionality.
+If you would like to customize your test further, read on.
+
+
 ## Execution
 
 To have a better grasp on how ScalaMeter works, it's important to understand
