@@ -21,11 +21,11 @@ if you haven't already.
 
 Since ScalaMeter 0.5, the following predefined test configurations exist to help you get started quickly:
 
-- `PerformanceTest.QuickBenchmark` -- explained in detail in the [simple microbenchmark section](/home/gettingstarted/simplemicrobenchmark)
-- `PerformanceTest.MicroBenchmark` -- runs a separate JVM and logs outputs to console, but generates no HTML document and does no regression testing
-- `PerformanceTest.OnlineRegressionReport` -- runs in a separate JVM, generates a HTML report ready to be hosted online, and does regression testing
-- `PerformanceTest.OfflineRegressionReport` -- runs in a separate JVM, generates a HTML report ready to be viewed in your browser from `file://` schema, and does regression testing
-- `PerformanceTest.OfflineReport` -- runs in a separate JVM, generates a HTML report ready to be hosted online, and does no regression testing
+- `PerformanceTest.QuickBenchmark` -- Explained in detail in the [simple microbenchmark section](/home/gettingstarted/simplemicrobenchmark). Good for quick testing to get a feel for how long something takes.
+- `PerformanceTest.MicroBenchmark` -- Runs a separate JVM and logs outputs to console, but generates no HTML document and does no regression testing. Good for reliable and repeatable testing where micro-optimizations play a role.
+- `PerformanceTest.OnlineRegressionReport` -- Runs in a separate JVM, generates a HTML report ready to be hosted online, and does regression testing. Method of choice for continuous integration.
+- `PerformanceTest.OfflineRegressionReport` -- Runs in a separate JVM, generates a HTML report ready to be viewed in your browser from `file://` schema, and does regression testing. Ideal for local development on existing codebase when source code changes must not cause performance regressions.
+- `PerformanceTest.OfflineReport` -- runs in a separate JVM, generates a HTML report for offline viewing in the browser, and does no regression testing. Ideal when developing a new codebase or tweaking the code to understand performance impacts.
 
 Simply extend one of these traits to start writing the test with the desired functionality.
 If you would like to customize your test further, read on.
