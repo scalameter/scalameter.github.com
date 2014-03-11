@@ -24,3 +24,4 @@ on the techniques used in ScalaMeter.
 - [Paolo Giarrusso](http://www.informatik.uni-marburg.de/~pgiarrusso/)
 - [Dan Burkert](https://github.com/danburkert)
 - [Alexey Romanov](https://github.com/alexeyr)
+- [Christian Krause](https://github.com/wookietreiber)
