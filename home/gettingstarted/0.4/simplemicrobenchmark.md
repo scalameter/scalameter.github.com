@@ -1,8 +1,9 @@
 ---
-layout: default
+layout: default04
 title: Simple benchmark
 permalink: /simplemicrobenchmark/index.html
 
+smversion: 0.4
 partof: getting-started
 num: 2
 ---
@@ -162,7 +163,7 @@ way to run ScalaMeter tests in larger projects.
 A huge benefit of doing so is that you don't have to manually pick the correct Scala version and the ScalaMeter
 artifact - SBT does this for you automatically.
 Also, with SBT you can run the tests directly from the SBT shell.
-See the section [SBT integration](/home/gettingstarted/sbt/) for details. 
+See the section [SBT integration](/home/gettingstarted/0.4/sbt/) for details. 
 
 After running the test, you should get an output similar to the following one:
 
@@ -202,7 +203,7 @@ Statistically, a mean running time gives much more insight into performance char
 we will see how to obtain it later.
 
 And that's it -- you just wrote your first ScalaMeter microbenchmark.
-Next, you will see how to <a href="/home/gettingstarted/configuration/">configure test execution and
+Next, you will see how to <a href="/home/gettingstarted/0.4/configuration/">configure test execution and
 test reporting</a>.
 
 

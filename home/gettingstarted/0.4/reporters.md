@@ -1,8 +1,9 @@
 ---
-layout: default
+layout: default04
 title: Reporters
 permalink: /reporters/index.html
 
+smversion: 0.4
 partof: getting-started
 num: 5
 ---
@@ -128,7 +129,7 @@ Configuration:
 Creates an HTML document with reports for all the tests.
 This reporter creates an interactive page which gives an overview of all test groups and curves.
 The page is capable of rendering charts in SVG format using the [D3.js](http://d3js.org/) library.
-Performance data can be filtered by curve, date, and [Generator](/scalameter/home/gettingstarted/generators) dimensions.
+Performance data can be filtered by curve, date, and [Generator](/scalameter/home/gettingstarted/0.4/generators) dimensions.
 All filter parameters are set directly from within the HTML UI.
 Permalinks for specific filter configurations can be generated as a simple way of storing or sharing filter parameters.
 
@@ -167,7 +168,7 @@ This reporter has to be used with a persistor different than `Persistor.None`.
 Otherwise, it will have nothing to compare the results against, and it will not be able
 to persist the results if the tests are successful.
 
-We will explain this reporter in more detail in the section on [performance regression testing](/home/gettingstarted/regressions/),
+We will explain this reporter in more detail in the section on [performance regression testing](/home/gettingstarted/0.4/regressions/),
 where we show how to do performance regression tests on a concrete example.
 In the meanwhile, we note that a regression reporter takes two parameters, namely, the
 `Tester` and the `Historian`.
@@ -264,7 +265,7 @@ We will mostly be using this historian.
 
 Since performance regression testing may not be completely clear after this high
 level overview of the regression reporter, we show a coding example in the next
-[section](/home/gettingstarted/regressions).
+[section](/home/gettingstarted/0.4/regressions).
 
 
 

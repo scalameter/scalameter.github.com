@@ -1,10 +1,12 @@
 ---
-layout: default
+layout: docsdefault05
 title: Generators
 permalink: /generators/index.html
 
+smversion: 0.5
 partof: getting-started
 num: 4
+outof: 8
 ---
 
 
@@ -126,7 +128,7 @@ of a benchmark run using it will depend on two input parameters.
 <br/>
 Such data dependency is best displayed using a 3D chart.
 
-In the next section we take a look at the different [reporters](/home/gettingstarted/reporters/).
+In the next section we take a look at the different [reporters](/home/gettingstarted/0.5/reporters/).
 
 
 

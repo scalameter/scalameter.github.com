@@ -1,8 +1,9 @@
 ---
-layout: default
+layout: default04
 title: Test configuration
 permalink: /configuration/index.html
 
+smversion: 0.4
 partof: getting-started
 num: 3
 ---
@@ -13,22 +14,8 @@ how results are reported as well as tweak a range of test parameters
 selectively.
 Before we start, we note that we will be running all the tests from within
 an SBT project from now on.
-This might be a good idea to read up on [SBT integration](/home/gettingstarted/sbt/)
+This might be a good idea to read up on [SBT integration](/home/gettingstarted/0.4/sbt/)
 if you haven't already.
-
-
-## Predefined configurations
-
-Since ScalaMeter 0.5, the following predefined test configurations exist to help you get started quickly:
-
-- `PerformanceTest.QuickBenchmark` -- Explained in detail in the [simple microbenchmark section](/home/gettingstarted/simplemicrobenchmark). Good for quick testing to get a feel for how long something takes.
-- `PerformanceTest.MicroBenchmark` -- Runs a separate JVM and logs outputs to console, but generates no HTML document and does no regression testing. Good for reliable and repeatable testing where micro-optimizations play a role.
-- `PerformanceTest.OnlineRegressionReport` -- Runs in a separate JVM, generates a HTML report ready to be hosted online, and does regression testing. Method of choice for continuous integration.
-- `PerformanceTest.OfflineRegressionReport` -- Runs in a separate JVM, generates a HTML report ready to be viewed in your browser from `file://` schema, and does regression testing. Ideal for local development on existing codebase when source code changes must not cause performance regressions.
-- `PerformanceTest.OfflineReport` -- Runs in a separate JVM, generates a HTML report for offline viewing in the browser, and does no regression testing. Ideal when developing a new codebase or tweaking the code to understand performance impacts.
-
-Simply extend one of these traits to start writing the test with the desired functionality.
-If you would like to customize your test further, read on.
 
 
 ## Execution
@@ -44,7 +31,7 @@ following order:
 4. Persisting test results with a **persistor**
 
 To explore these parts in more depth, we will modify the `RangeBenchmark`
-from the <a href="/home/gettingstarted/simplemicrobenchmark">Simple benchmark</a> section.
+from the <a href="/home/gettingstarted/0.4/simplemicrobenchmark">Simple benchmark</a> section.
 We focus on the executor part first.
 We will no longer inherit the `PerformanceTest.Quickbenchmark` class,
 but `PerformanceTest` directly.
@@ -215,7 +202,7 @@ The `ChartReporter` constructor takes several parameters, the most important of 
 the `ChartFactory`.
 The same test data can be presented in many different ways -- as a histogram, confidence
 interval comparison, a 3D chart, and so on.
-These are described in more detail in the [Reporters](/home/gettingstarted/reporters/) section.
+These are described in more detail in the [Reporters](/home/gettingstarted/0.4/reporters/) section.
 We want a simple XY line chart now, so we create a `ChartFactory.XYLine()` object.
 
 Running the benchmark from SBT like before will not produce any terminal output.
@@ -373,7 +360,7 @@ For example, all the parameters which have something to do with test execution
 will begin with the `exec` prefix.
 There are many different parameters you can configure -- we will enumerate them
 as we describe different parts of the pipeline.
-In the next section we talk in more detail about [generators](/home/gettingstarted/generators/).
+In the next section we talk in more detail about [generators](/home/gettingstarted/0.4/generators/).
 
 
 ## Writing larger test suites

@@ -1,8 +1,9 @@
 ---
-layout: default
+layout: default04
 title: SBT integration
 permalink: /sbt/index.html
 
+smversion: 0.4
 partof: getting-started
 num: 8
 ---

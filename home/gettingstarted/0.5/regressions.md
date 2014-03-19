@@ -1,10 +1,12 @@
 ---
-layout: default
+layout: docsdefault05
 title: Performance regression testing
 permalink: /regressions/index.html
 
+smversion: 0.5
 partof: getting-started
 num: 6
+outof: 8
 ---
 
 
@@ -392,7 +394,7 @@ When trying to figure out the cause of an instability, always try to ask questio
 - does my test inherently trigger garbage collection cycles?
 - does my test allocate too much memory?
 
-In the next section we examine different [executors](/home/gettingstarted/executors/) in more detail.
+In the next section we examine different [executors](/home/gettingstarted/0.5/executors/) in more detail.
 
 
 <div class="imagenoframe">

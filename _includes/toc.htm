@@ -20,7 +20,7 @@
   <ul class="bullets">
     {% for i in (1..totalPagesTour) %}
       {% for pg in site.pages %}
-        {% if pg.partof == "getting-started" and pg.num and pg.num == i %}
+        {% if pg.partof == "getting-started" and pg.num and pg.num == i and pg.smversion == page.smversion %}
           <li><a href="{{ pg.url }}">{{ pg.title }}</a></li>
         {% endif %}
       {% endfor %}
