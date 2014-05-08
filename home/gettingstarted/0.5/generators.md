@@ -88,7 +88,8 @@ when only a few such objects are needed during the entire test.
     
       val sizes = Gen.range("size")(100000000, 500000000, 200000000)
       val parallelismLevels = Gen.enumeration("parallelismLevel")(1, 2, 4, 8)
-      val pools = (for (par <- parallelismLevels) yield new collection.parallel.ForkJoinTaskSupport(new concurrent.forkjoin.ForkJoinPool(par))).cached
+      val pools = (for (par <- parallelismLevels) yield
+        new collection.parallel.ForkJoinTaskSupport(new concurrent.forkjoin.ForkJoinPool(par))).cached
       val inputs = Gen.tupled(sizes, pools)
     
       performance of "foreach" in {
