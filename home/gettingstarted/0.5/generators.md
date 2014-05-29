@@ -6,7 +6,7 @@ permalink: /generators/index.html
 smversion: 0.5
 partof: getting-started
 num: 4
-outof: 8
+outof: 9
 ---
 
 
