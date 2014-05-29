@@ -44,7 +44,7 @@ enter the following to your `build.sbt`:
       "https://oss.sonatype.org/content/repositories/snapshots"
     
     libraryDependencies +=
-      "com.github.axel22" %% "scalameter" % "0.5-SNAPSHOT" % "test"
+      "com.storm-enroute" %% "scalameter" % "0.5-SNAPSHOT" % "test"
     
     testFrameworks += new TestFramework("org.scalameter.ScalaMeterFramework")
     
