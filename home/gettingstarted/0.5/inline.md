@@ -1,7 +1,7 @@
 ---
 layout: docsdefault05
 title: Inline Benchmarking
-permalink: /sbt/index.html
+permalink: /inline/index.html
 
 smversion: 0.5
 partof: getting-started
