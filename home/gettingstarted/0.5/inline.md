@@ -21,6 +21,7 @@ First, make sure you add the following dependency to your project:
     libraryDependencies += "com.storm-enroute" %% "scalameter-core" % "[version]"
 
 where `[version]` is at least `0.5-SNAPSHOT`, and you are using Scala 2.10 or newer.
+Note that the minimalistic `scalameter-core` module is sufficient for inline benchmarking and you do not need to use the full ScalaMeter suite.
 
 Then, to measure how long a snippet of code executes, proceed as follows:
 
