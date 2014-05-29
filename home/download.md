@@ -50,6 +50,16 @@ enter the following to your `build.sbt`:
     
     parallelExecution in Test := false
 
+To use `scalameter-core` module for [lightweight inline benchmarking](/home/gettingstarted/0.5/inline/), add the following:
+
+    resolvers += "Sonatype OSS Snapshots" at
+      "https://oss.sonatype.org/content/repositories/snapshots"
+
+    libraryDependencies +=
+      "com.storm-enroute" %% "scalameter-core" % "0.5-SNAPSHOT"
+
+
+
 You can see the current [build status here](https://travis-ci.org/scalameter/scalameter).
 
 [![Build Status](https://travis-ci.org/scalameter/scalameter.png?branch=master)](https://travis-ci.org/scalameter/scalameter)
