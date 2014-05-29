@@ -47,7 +47,7 @@ and use the measurer that ignores GC cycles.
     }
     println(s"Total time: $time")
 
-To measure a different metric, such as memory footprint:
+To measure a different metric, such as memory footprint, instantiate a different measurer:
 
     val mem = config(
       Key.exec.benchRuns -> 20
@@ -55,4 +55,6 @@ To measure a different metric, such as memory footprint:
       for (i <- 0 until 100000) yield i
     }
     println(s"Total memory: $mem")
+
+Note that all the inline benchmarks are executed in the same JVM -- inline benchmarks act as if they were run in a `LocalExecutor`.
 
