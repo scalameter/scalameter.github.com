@@ -44,11 +44,21 @@ enter the following to your `build.sbt`:
       "https://oss.sonatype.org/content/repositories/snapshots"
     
     libraryDependencies +=
-      "com.github.axel22" %% "scalameter" % "0.5-SNAPSHOT" % "test"
+      "com.storm-enroute" %% "scalameter" % "0.5-SNAPSHOT" % "test"
     
     testFrameworks += new TestFramework("org.scalameter.ScalaMeterFramework")
     
     parallelExecution in Test := false
+
+To use `scalameter-core` module for [lightweight inline benchmarking](/home/gettingstarted/0.5/inline/), add the following:
+
+    resolvers += "Sonatype OSS Snapshots" at
+      "https://oss.sonatype.org/content/repositories/snapshots"
+
+    libraryDependencies +=
+      "com.storm-enroute" %% "scalameter-core" % "0.5-SNAPSHOT"
+
+
 
 You can see the current [build status here](https://travis-ci.org/scalameter/scalameter).
 

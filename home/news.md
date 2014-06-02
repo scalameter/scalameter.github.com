@@ -10,7 +10,7 @@ permalink: /news/index.html
 <div class="newsentries">
 
   {% for post in site.posts %}
-  <a href="/scalameter/{{ post.url }}">
+  <a href="{{ post.url }}">
     <br/>
     <br/>
     <h1 class="newstitle">
@@ -18,7 +18,7 @@ permalink: /news/index.html
     </h1>
   </a>
   <div class="newsinfo">
-    {{ post.date | date: "%d.%m.%Y." }}, poster: {{ post.poster }}
+    <img width="15" height="15" src="/resources/images/calendar.png"/>&nbsp; {{ post.date | date: "%d.%m.%Y." }}, poster: {{ post.poster }}
   </div>
   <br/>
   {{ post.content }}

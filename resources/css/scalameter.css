@@ -369,6 +369,32 @@ div.toc-panel {
   border-radius: 5px;
 }
 
+div.controls {
+  padding: 5px 5px 5px 5px;
+  background-color: #f8f8e8;
+  border: 1px solid #c0a090;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+  width: 100%;
+}
+
+div.controls #left {
+  float: left;
+}
+
+div.controls #right {
+  float: right;
+}
+
+div.controls #center {
+  margin: 0 auto;
+  margin-left: 10px;
+  width: 100px;
+}
+
+
+
+
 
 
 
