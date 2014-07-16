@@ -25,7 +25,7 @@ Note that the minimalistic `scalameter-core` module is sufficient for inline ben
 
 Then, to measure how long a snippet of code executes, proceed as follows:
 
-    val time = measure {
+    val time = inline.measure {
       for (i <- 0 until 100000) yield i
     }
     println(s"Total time: $time")
