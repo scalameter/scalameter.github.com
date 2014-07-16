@@ -8,7 +8,7 @@ permalink: /download/index.html
 
 ## Direct download
 
-The latest ScalaMeter release is **ScalaMeter 0.4** for Scala 2.10.
+The latest ScalaMeter release is **ScalaMeter 0.6** for Scala 2.10 and Scala 2.11.
 
 
 ## Maven repository
@@ -16,18 +16,29 @@ The latest ScalaMeter release is **ScalaMeter 0.4** for Scala 2.10.
 ScalaMeter is available for download from Maven Central!
 
     <dependency>
-      <groupId>com.github.axel22</groupId>
-      <artifactId>scalameter_2.10</artifactId>
-      <version>0.4</version>
+      <groupId>com.storm-enroute</groupId>
+      <artifactId>scalameter_2.11</artifactId>
+      <version>0.6</version>
     </dependency>
 
 If you're using [SBT](/home/gettingstarted/sbt/), just add the following lines to `build.sbt`:
 
-    libraryDependencies += "com.github.axel22" %% "scalameter" % "0.4"
+    resolvers += "Sonatype OSS Snapshots" at
+      "https://oss.sonatype.org/content/repositories/releases"
+    
+    libraryDependencies += "com.storm-enroute" %% "scalameter" % "0.6"
 
     testFrameworks += new TestFramework("org.scalameter.ScalaMeterFramework")
     
     parallelExecution in Test := false
+
+To use `scalameter-core` module for [lightweight inline benchmarking](/home/gettingstarted/0.5/inline/), add the following:
+
+    resolvers += "Sonatype OSS Snapshots" at
+      "https://oss.sonatype.org/content/repositories/releases"
+
+    libraryDependencies +=
+      "com.storm-enroute" %% "scalameter-core" % "0.6"
 
 
 ## Source code
@@ -44,20 +55,11 @@ enter the following to your `build.sbt`:
       "https://oss.sonatype.org/content/repositories/snapshots"
     
     libraryDependencies +=
-      "com.storm-enroute" %% "scalameter" % "0.5-SNAPSHOT" % "test"
+      "com.storm-enroute" %% "scalameter" % "0.7-SNAPSHOT" % "test"
     
     testFrameworks += new TestFramework("org.scalameter.ScalaMeterFramework")
     
     parallelExecution in Test := false
-
-To use `scalameter-core` module for [lightweight inline benchmarking](/home/gettingstarted/0.5/inline/), add the following:
-
-    resolvers += "Sonatype OSS Snapshots" at
-      "https://oss.sonatype.org/content/repositories/snapshots"
-
-    libraryDependencies +=
-      "com.storm-enroute" %% "scalameter-core" % "0.5-SNAPSHOT"
-
 
 
 You can see the current [build status here](https://travis-ci.org/scalameter/scalameter).
