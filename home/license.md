@@ -1,7 +1,7 @@
 ---
 layout: default
 title: License
-permalink: /home/gettingstarted/license/index.html
+permalink: /home/license/index.html
 ---
 
 
