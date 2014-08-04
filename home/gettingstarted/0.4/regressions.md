@@ -1,7 +1,7 @@
 ---
 layout: default04
 title: Performance regression testing
-permalink: /regressions/index.html
+permalink: /home/gettingstarted/0.4/regressions/index.html
 
 smversion: 0.4
 partof: getting-started
