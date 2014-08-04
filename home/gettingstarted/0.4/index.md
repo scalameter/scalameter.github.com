@@ -1,7 +1,7 @@
 ---
 layout: default04
 title: Introduction
-permalink: /index.html
+permalink: /home/gettingstarted/0.4/index.html
 
 smversion: 0.4
 partof: getting-started
