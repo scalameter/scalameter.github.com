@@ -1,7 +1,7 @@
 ---
 layout: docsdefault05
 title: Inline Benchmarking
-permalink: /inline/index.html
+permalink: /home/gettingstarted/0.5/inline/index.html
 
 smversion: 0.5
 partof: getting-started
