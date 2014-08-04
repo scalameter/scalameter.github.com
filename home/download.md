@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Download
-permalink: /home/gettingstarted/download/index.html
+permalink: /home/download/index.html
 ---
 
 
