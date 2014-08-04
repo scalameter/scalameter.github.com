@@ -1,7 +1,7 @@
 ---
 layout: default04
 title: Executors
-permalink: /executors/index.html
+permalink: /home/gettingstarted/0.4/executors/index.html
 
 smversion: 0.4
 partof: getting-started
