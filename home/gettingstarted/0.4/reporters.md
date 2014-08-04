@@ -1,7 +1,7 @@
 ---
 layout: default04
 title: Reporters
-permalink: /reporters/index.html
+permalink: /home/gettingstarted/0.4/reporters/index.html
 
 smversion: 0.4
 partof: getting-started
