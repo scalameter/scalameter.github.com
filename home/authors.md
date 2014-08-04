@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Authors
-permalink: /authors/index.html
+permalink: /home/gettingstarted/authors/index.html
 ---
 
 ## ScalaMeter team
