@@ -1,7 +1,7 @@
 ---
 layout: default04
 title: Test configuration
-permalink: /configuration/index.html
+permalink: /home/gettingstarted/0.4/configuration/index.html
 
 smversion: 0.4
 partof: getting-started
