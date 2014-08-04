@@ -1,7 +1,7 @@
 ---
 layout: docsdefault05
 title: Generators
-permalink: /generators/index.html
+permalink: /home/gettingstarted/0.5/generators/index.html
 
 smversion: 0.5
 partof: getting-started
