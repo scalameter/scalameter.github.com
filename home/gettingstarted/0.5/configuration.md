@@ -1,7 +1,7 @@
 ---
 layout: docsdefault05
 title: Test configuration
-permalink: /configuration/index.html
+permalink: /home/gettingstarted/0.5/configuration/index.html
 
 smversion: 0.5
 partof: getting-started
