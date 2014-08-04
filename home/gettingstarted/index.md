@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Documentation and Getting Started Guides
-permalink: /index.html
+permalink: /home/gettingstarted/index.html
 
 smversion: 0.5
 partof: getting-started
