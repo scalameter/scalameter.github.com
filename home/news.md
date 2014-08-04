@@ -1,7 +1,7 @@
 ---
 layout: default
 title: News
-permalink: /home/gettingstarted/news/index.html
+permalink: /home/news/index.html
 ---
 
 
