@@ -1,7 +1,7 @@
 ---
 layout: default04
 title: SBT integration
-permalink: /sbt/index.html
+permalink: /home/gettingstarted/0.4/sbt/index.html
 
 smversion: 0.4
 partof: getting-started
