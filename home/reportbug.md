@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Report a Bug
-permalink: /reportbug/index.html
+permalink: /home/gettingstarted/reportbug/index.html
 ---
 
 
