@@ -1,7 +1,7 @@
 ---
 layout: docsdefault05
 title: Simple benchmark
-permalink: /simplemicrobenchmark/index.html
+permalink: /home/gettingstarted/0.5/simplemicrobenchmark/index.html
 
 smversion: 0.5
 partof: getting-started
