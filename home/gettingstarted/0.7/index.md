@@ -10,6 +10,8 @@ outof: 50
 ---
 
 
+{{ page.smversion }}
+
 Welcome to the Getting Started guide.
 Here you can learn about the basics of microbenchmarking, writing performance regression
 tests and using ScalaMeter in general.
