@@ -1,6 +1,6 @@
 ---
 layout: docsdefault07
-title: Simple benchmark
+title: Java Usage
 permalink: /home/gettingstarted/0.7/javausage/index.html
 
 smversion: 0.7
