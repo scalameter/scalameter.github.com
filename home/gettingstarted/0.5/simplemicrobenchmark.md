@@ -6,7 +6,7 @@ permalink: /home/gettingstarted/0.5/simplemicrobenchmark/index.html
 smversion: 0.5
 partof: getting-started
 num: 2
-outof: 9
+outof: 50
 ---
 
 

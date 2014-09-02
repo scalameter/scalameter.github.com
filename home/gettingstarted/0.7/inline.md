@@ -6,7 +6,7 @@ permalink: /home/gettingstarted/0.7/inline/index.html
 smversion: 0.7
 partof: getting-started
 num: 9
-outof: 10
+outof: 50
 ---
 
 

@@ -6,7 +6,7 @@ permalink: /home/gettingstarted/0.7/javausage/index.html
 smversion: 0.7
 partof: getting-started
 num: 10
-outof: 10
+outof: 50
 ---
 
 ScalaMeter tests can be (despite what the name might suggest) written in Java as well.
