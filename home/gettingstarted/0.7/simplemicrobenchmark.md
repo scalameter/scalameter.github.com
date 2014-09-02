@@ -1,5 +1,5 @@
 ---
-layout: docsdefault05
+layout: docsdefault07
 title: Simple benchmark
 permalink: /home/gettingstarted/0.7/simplemicrobenchmark/index.html
 

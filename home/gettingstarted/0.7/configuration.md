@@ -1,5 +1,5 @@
 ---
-layout: docsdefault05
+layout: docsdefault07
 title: Test configuration
 permalink: /home/gettingstarted/0.7/configuration/index.html
 

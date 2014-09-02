@@ -1,5 +1,5 @@
 ---
-layout: docsdefault05
+layout: docsdefault07
 title: Performance regression testing
 permalink: /home/gettingstarted/0.7/regressions/index.html
 

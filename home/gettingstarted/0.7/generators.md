@@ -1,5 +1,5 @@
 ---
-layout: docsdefault05
+layout: docsdefault07
 title: Generators
 permalink: /home/gettingstarted/0.7/generators/index.html
 

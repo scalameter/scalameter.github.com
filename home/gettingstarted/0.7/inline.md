@@ -1,5 +1,5 @@
 ---
-layout: docsdefault05
+layout: docsdefault07
 title: Inline Benchmarking
 permalink: /home/gettingstarted/0.7/inline/index.html
 

@@ -1,5 +1,5 @@
 ---
-layout: docsdefault05
+layout: docsdefault07
 title: Introduction
 permalink: /home/gettingstarted/0.7/index.html
 

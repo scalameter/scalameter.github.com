@@ -1,5 +1,5 @@
 ---
-layout: docsdefault05
+layout: docsdefault07
 title: Reporters
 permalink: /home/gettingstarted/0.7/reporters/index.html
 
