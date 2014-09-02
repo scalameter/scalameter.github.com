@@ -4,7 +4,6 @@ title: Simple benchmark
 permalink: /home/gettingstarted/0.7/javausage/index.html
 
 smversion: 0.7
-
 partof: getting-started
 num: 10
 outof: 10

@@ -3,7 +3,7 @@ layout: default
 title: Documentation and Getting Started Guides
 permalink: /home/gettingstarted/index.html
 
-smversion: 0.5
+smversion: 0.7
 partof: getting-started
 ---
 
