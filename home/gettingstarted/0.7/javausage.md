@@ -45,7 +45,8 @@ We now declare a `List` benchmark group:
 Next, we declare a `Using` class for the benchmark.
 In the Scala frontend, this is achieved with the `using` block, as described in the [simple microbenchmark example](/home/gettingstarted/0.7/simplemicrobenchmark/index.html).
 
-        public class groupBy implements org.scalameter.japi.Using<LinkedList<Integer>, HashMap<Integer, LinkedList<Integer>>> {
+        public class groupBy
+        implements Using<LinkedList<Integer>, HashMap<Integer, LinkedList<Integer>>> {
 
 To override the default configuration for a `Using` class or a `Group`,
 we declare a final `config` field of the type `JContext` (more about custom per-group configurations [here](/home/gettingstarted/0.7/configuration/index.html)):
@@ -65,22 +66,19 @@ Next, we declare a generator for the `groupBy` class (see more about generators 
 
 Finally, we declare the code snippet for the test by implementing the `snippet` method:
 
-          public HashMap<Integer, LinkedList<Integer>> snippet(LinkedList<Integer> in) {
-            HashMap<Integer, LinkedList<Integer>> hm = new HashMap<Integer, LinkedList<Integer>>();
-            for (int i = 0; i < 10; i++) {
-              hm.put(i, new LinkedList<Integer>());
-            }
-            Iterator<Integer> it = in.iterator();
-            while (it.hasNext()) {
-              Integer element = it.next();
-              LinkedList<Integer> tmp = hm.get(element % 10);
-              tmp.add(element);
-              hm.put(element % 10, tmp);
-            }
-            return hm;
-          }
-        }
+    public HashMap<Integer, LinkedList<Integer>> snippet(LinkedList<Integer> in) {
+      HashMap<Integer, LinkedList<Integer>> hm = new HashMap<Integer, LinkedList<Integer>>();
+      for (int i = 0; i < 10; i++) {
+        hm.put(i, new LinkedList<Integer>());
       }
+      Iterator<Integer> it = in.iterator();
+      while (it.hasNext()) {
+        Integer element = it.next();
+        LinkedList<Integer> tmp = hm.get(element % 10);
+        tmp.add(element);
+        hm.put(element % 10, tmp);
+      }
+      return hm;
     }
 
 The complete test is here:
@@ -90,7 +88,8 @@ The complete test is here:
         return new SerializationPersistor();
       }
       public class List implements Group {
-        public class groupBy implements org.scalameter.japi.Using<LinkedList<Integer>, HashMap<Integer, LinkedList<Integer>>> {
+        public class groupBy
+        implements Using<LinkedList<Integer>, HashMap<Integer, LinkedList<Integer>>> {
           public final JContext config = JContext.create()
             .put("exec.benchRuns", 20)
             .put("exec.independentSamples", 1)
@@ -100,8 +99,10 @@ The complete test is here:
             JavaGenerator<Integer> sizes = new SingleGen("size", 5000000);
             return new CollectionGenerators(sizes).lists();
           }
-          public HashMap<Integer, LinkedList<Integer>> snippet(LinkedList<Integer> in) {
-            HashMap<Integer, LinkedList<Integer>> hm = new HashMap<Integer, LinkedList<Integer>>();
+          public HashMap<Integer, LinkedList<Integer>> 
+            snippet(LinkedList<Integer> in) {
+            HashMap<Integer, LinkedList<Integer>> hm =
+              new HashMap<Integer, LinkedList<Integer>>();
             for (int i = 0; i < 10; i++) {
               hm.put(i, new LinkedList<Integer>());
             }
