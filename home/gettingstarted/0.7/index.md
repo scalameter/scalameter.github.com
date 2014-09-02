@@ -10,7 +10,7 @@ outof: 50
 ---
 
 
-{{ page.smversion }}
+-- {{ page.smversion }} --
 
 Welcome to the Getting Started guide.
 Here you can learn about the basics of microbenchmarking, writing performance regression
