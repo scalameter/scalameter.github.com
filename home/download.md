@@ -43,7 +43,7 @@ To use `scalameter-core` module for [lightweight inline benchmarking](/home/gett
 
 ## Source code
 
-ScalaMeter source code is available at [GitHub](https://github.com/axel22/scalameter).
+ScalaMeter source code is available at [GitHub](https://github.com/scalameter/scalameter).
 
 
 ## Snapshot version
