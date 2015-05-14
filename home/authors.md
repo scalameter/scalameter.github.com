@@ -25,3 +25,5 @@ on the techniques used in ScalaMeter.
 - [Dan Burkert](https://github.com/danburkert)
 - [Alexey Romanov](https://github.com/alexeyr)
 - [Christian Krause](https://github.com/wookietreiber)
+- [@kurnevsky](https://github.com/kurnevsky)
+- [@rayortigas](https://github.com/rayortigas)
