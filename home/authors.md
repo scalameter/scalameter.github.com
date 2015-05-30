@@ -27,3 +27,4 @@ on the techniques used in ScalaMeter.
 - [Christian Krause](https://github.com/wookietreiber)
 - [@kurnevsky](https://github.com/kurnevsky)
 - [@rayortigas](https://github.com/rayortigas)
+- [Dmitry Petrashko](https://github.com/DarkDimius)
