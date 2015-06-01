@@ -16,3 +16,6 @@ Please follow the link for:
 
 - [ScalaMeter 0.4 or Earlier Getting Started Guide](/home/gettingstarted/0.4/).
 
+Developer documentation:
+
+- [Release Process](/home/releasing/)
