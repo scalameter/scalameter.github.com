@@ -9,9 +9,11 @@ permalink: /home/releasing/index.html
 ## Library
 
 ScalaMeter release process is automated thanks to [sbt-release](https://github.com/sbt/sbt-release).
-It is triggered using `sbt release`.
+To cut a new release, follow these steps:
 
-On each release following steps are performed:
+1. Run `sbt release` inside the ScalaMeter repo.
+
+When a release is cut, the following steps are performed:
 - checking snapshot dependencies and querying user on continue if any snapshot dependency is found
 - querying user for release and next snapshot version
 - running tests
@@ -26,13 +28,13 @@ On each release following steps are performed:
 
 ## Examples
 
-Invoking release process updates also [scalameter-examples](https://github.com/scalameter/scalameter-examples).
+Invoking the release process also updates [scalameter-examples](https://github.com/scalameter/scalameter-examples).
 
-After steps listed in [Library](##Library) section additional work is done, which involves:
-- cloning scalameter-examples to temporary directory
-- updating version of ScalaMeter artifact to release version in each example respectively
+After the steps listed in [Library](##Library) section, the following steps are performed:
+- cloning scalameter-examples to a temporary directory
+- updating the version of the ScalaMeter artifact to the latest release version in each example, respectively
 - commiting all changes
 - tagging examples repo with tag in format `v$releaseVersion`
-- updating version of ScalaMeter artifact to snapshot version in each example respectively
+- updating the version of the ScalaMeter artifact to the snapshot version in each example, respectively
 - commiting all changes
 - pushing all changes to remote
