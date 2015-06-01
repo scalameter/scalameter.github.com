@@ -31,7 +31,7 @@ When a release is cut, the following steps are performed:
 
 Invoking the release process also updates [scalameter-examples](https://github.com/scalameter/scalameter-examples).
 
-After the steps listed in [Library](##Library) section, the following steps are performed:
+After the steps listed in [Library](#library) section, the following ones are performed:
 
 - cloning scalameter-examples to a temporary directory
 - updating the version of the ScalaMeter artifact to the latest release version in each example, respectively
