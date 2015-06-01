@@ -28,3 +28,4 @@ on the techniques used in ScalaMeter.
 - [@kurnevsky](https://github.com/kurnevsky)
 - [@rayortigas](https://github.com/rayortigas)
 - [Dmitry Petrashko](https://github.com/DarkDimius)
+- [Krzysztof Janosz](https://github.com/kjanosz)
