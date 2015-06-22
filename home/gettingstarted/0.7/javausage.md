@@ -5,7 +5,7 @@ permalink: /home/gettingstarted/0.7/javausage/index.html
 
 smversion: 0.7
 partof: getting-started
-num: 10
+num: 11
 outof: 50
 ---
 

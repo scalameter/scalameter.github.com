@@ -5,7 +5,7 @@ permalink: /home/gettingstarted/0.7/sbt/index.html
 
 smversion: 0.7
 partof: getting-started
-num: 8
+num: 9
 outof: 50
 ---
 
