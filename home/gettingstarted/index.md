@@ -16,6 +16,10 @@ Please follow the link for:
 
 - [ScalaMeter 0.4 or Earlier Getting Started Guide](/home/gettingstarted/0.4/).
 
+Example ScalaMeter projects:
+
+- [ScalaMeter Example Repository at GitHub](https://github.com/scalameter/scalameter-examples)
+
 Developer documentation:
 
 - [Release Process](/home/releasing/)
