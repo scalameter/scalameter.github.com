@@ -37,9 +37,9 @@ smversion: 0.7
           {% if pg.num == page.num %}
             <!--<a href="{{ page.url }}" id="center">{{ page.title }}</a>-->
             <a id="center">&nbsp;</a>
-          {% elsif isprev contains '-1' %}
+          {% elsif isprev == '-1' %}
             <a href="{{ pg.permalink }}" id="left">&#8249; {{ pg.title }}</a>
-          {% elsif isnext contains '-1' %}
+          {% elsif isnext == '-1' %}
             <a href="{{ pg.permalink }}" id="right">{{ pg.title }} &#8250;</a>
           {% endif %}
         {% endif %}
