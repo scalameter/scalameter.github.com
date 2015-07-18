@@ -155,9 +155,58 @@ And the final output:
         (ci = <20000.02 kB, 20000.02 kB>, significance = 1.0E-10)
 
 
-You can take a look at the ScalaMeter API or source code to figure out how different measurers work in more detail.
+### Method Invocation Count
 
+The invocation count measurers are used to count the total number of invocations
+of a specific method, or a group of methods.
 
+There are two implementations of the `InvocationCount` trait and both of them need instrumented classpath to work,
+hence `SeparateJvmsExecutor` must be used as an executor.
+
+`BoxingCount` simply counts (auto)boxing of primitives: `Boolean`, `Byte`, `Char`, `Short`, `Int`, `Long`, `Float` and `Double`.
+You can either specify primitives you would like to count or count all of them by using the `BoxingCount.all()` method.
+
+    class BoxingCountTest extends PerformanceTest.MicroBenchmark {
+        override def measurer = BoxingCount(classOf[Short], classOf[Int], classOf[Long]) // we want to measure (auto)boxing of short, int and long values
+
+        // benchmark body
+    } 
+
+`MethodInvocationCount` can count invocations of arbitrary methods. It is configured with its `InvocationCountMatcher` constructor argument.
+
+    class MethodInvocationCountTest extends PerformanceTest.OfflineReport {
+        override def measurer = MethodInvocationCount(InvocationCountMatcher.forName("scala.collection.immutable.Vector", "length"))
+
+        // benchmark body
+    }
+
+`InvocationCountMatcher` matches classes and their methods.
+The methods are instrumented so that each time they are invoked, they increase their corresponding counter.
+It can separately match classes that should be instrumented, and methods within those classes.
+
+#### Class Matcher
+
+A `ClassMatcher` is a component that selects classes whose methods should be later matched by a `MethodMatcher`.
+
+- the `ClassMatcher.ClassName` matches exactly one class specified by a name
+- the `ClassMatcher.Regex` matches every class whose name matches the specified regex
+- the `ClassMatcher.Descendants` matches any class that is a subclass of the specified class.
+  This subclass relationship can be transitive, or only direct - this is specified with a parameter. In the inheritance hierarchy, both the interfaces and the superclasses are considered.
+
+#### Method Matcher
+
+After the classes are selected by the `ClassMatcher`, methods within those classes are filtered with the `MethodMatcher`.
+We support the following `MethodMatcher` implementations:
+
+- the `MethodMatcher.MethodName` matches methods with the specified name
+- the `MethodMatcher.Regex` matches every method whose name matches the given regular expression 
+- the `MethodMatcher.Full` matches both the method name and the method signature,
+  where the signature is specified with the internal format that describes the method arguments and its return type
+
+You can find various examples of invocation count measurers in the
+[scalameter-examples repo](https://github.com/scalameter/scalameter-examples/tree/master/invocation-count-measurers/src/bench/scala/org/scalameter/examples).
+
+You can take a look at the ScalaMeter API or the source code to figure out how different measurers work in more detail.
 
 <div class="imagenoframe">
   <img src="/resources/images/logo-yellow-small.png"></img>
