@@ -199,6 +199,7 @@ After the classes are selected by the `ClassMatcher`, methods within those class
 We support the following `MethodMatcher` implementations:
 
 - the `MethodMatcher.MethodName` matches methods with the specified name
+- the `MethodMatcher.Allocation` matches allocations of a class
 - the `MethodMatcher.Regex` matches every method whose name matches the given regular expression 
 - the `MethodMatcher.Full` matches both the method name and the method signature,
   where the signature is specified with the internal format that describes the method arguments and its return type
