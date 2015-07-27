@@ -60,5 +60,5 @@ To measure a different metric, such as memory footprint, instantiate a different
 
 Note that all the inline benchmarks are executed in the same JVM -- inline benchmarks act as if they were run in a `LocalExecutor`.
 
-More examples [here](https://github.com/scalameter/scalameter/blob/master/src/test/scala/org/scalameter/inline/InlineBenchmarkTest.scala).
+More examples [here](https://github.com/scalameter/scalameter/blob/master/src/test/scala/org/scalameter/inlinebenches/InlineBenchmarkTest.scala).
 
