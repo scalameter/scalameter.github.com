@@ -23,11 +23,11 @@ if you haven't already.
 
 Since ScalaMeter 0.7, the following predefined test configurations exist to help you get started quickly:
 
-- `PerformanceTest.QuickBenchmark` -- Explained in detail in the [simple microbenchmark section](/home/gettingstarted/0.7/simplemicrobenchmark). Good for quick testing to get a feel for how long something takes.
-- `PerformanceTest.MicroBenchmark` -- Runs a separate JVM and logs outputs to console, but generates no HTML document and does no regression testing. Good for reliable and repeatable testing where micro-optimizations play a role.
-- `PerformanceTest.OnlineRegressionReport` -- Runs in a separate JVM, generates a HTML report ready to be hosted online, and does regression testing. Method of choice for continuous integration.
-- `PerformanceTest.OfflineRegressionReport` -- Runs in a separate JVM, generates a HTML report ready to be viewed in your browser from `file://` schema, and does regression testing. Ideal for local development on existing codebase when source code changes must not cause performance regressions.
-- `PerformanceTest.OfflineReport` -- Runs in a separate JVM, generates a HTML report for offline viewing in the browser, and does no regression testing. Ideal when developing a new codebase or tweaking the code to understand performance impacts.
+- `Bench.QuickBenchmark` -- Explained in detail in the [simple microbenchmark section](/home/gettingstarted/0.7/simplemicrobenchmark). Good for quick testing to get a feel for how long something takes.
+- `Bench.MicroBenchmark` -- Runs a separate JVM and logs outputs to console, but generates no HTML document and does no regression testing. Good for reliable and repeatable testing where micro-optimizations play a role.
+- `Bench.OnlineRegressionReport` -- Runs in a separate JVM, generates a HTML report ready to be hosted online, and does regression testing. Method of choice for continuous integration.
+- `Bench.OfflineRegressionReport` -- Runs in a separate JVM, generates a HTML report ready to be viewed in your browser from `file://` schema, and does regression testing. Ideal for local development on existing codebase when source code changes must not cause performance regressions.
+- `Bench.OfflineReport` -- Runs in a separate JVM, generates a HTML report for offline viewing in the browser, and does no regression testing. Ideal when developing a new codebase or tweaking the code to understand performance impacts.
 
 Simply extend one of these traits to start writing the test with the desired functionality.
 If you would like to customize your test further, read on.
@@ -48,14 +48,14 @@ following order:
 To explore these parts in more depth, we will modify the `RangeBenchmark`
 from the <a href="/home/gettingstarted/0.7/simplemicrobenchmark">Simple benchmark</a> section.
 We focus on the executor part first.
-We will no longer inherit the `PerformanceTest.Quickbenchmark` class,
-but `PerformanceTest` directly.
+We will no longer inherit the `Bench.Quickbenchmark` class,
+but `Bench` directly.
 Doing this requires that we manually define three parts of the testing pipeline,
 namely, the members `executor`, `reporter` and `persistor`.
 
     import org.scalameter.api._
     
-    object RangeBenchmark extends PerformanceTest {
+    object RangeBenchmark extends Bench {
     
       /* configuration */
     
@@ -86,7 +86,7 @@ namely, the members `executor`, `reporter` and `persistor`.
     }
 
 We've configured these three parts in exactly the same way as they are defined in the previously
-inherited `PerformanceTest.Quickbenchmark` class.
+inherited `Bench.Quickbenchmark` class.
 The `executor` decides how the tests are executed, how the measurements are done and how the results
 are interpreted.
 We intend to run the tests in the same JVM instance as ScalaMeter, so we instantiate a `LocalExecutor`.
@@ -390,7 +390,7 @@ and the reporters from the enclosing class are used.
 
 In the following example we have two test classes that define separate executors.
 
-    class RegressionTest extends PerformanceTest.OfflineReport {
+    class RegressionTest extends Bench.OfflineReport {
       val sizes = Gen.range("size")(1000000, 5000000, 2000000)
       val arrays = for (sz <- sizes) yield (0 until sz).toArray
     
@@ -406,7 +406,7 @@ In the following example we have two test classes that define separate executors
       }
     }
     
-    class MemoryTest extends PerformanceTest.OfflineReport {
+    class MemoryTest extends Bench.OfflineReport {
       def persistor = new persistence.SerializationPersistor
       override def measurer = new Executor.Measurer.MemoryFootprint
     
@@ -426,7 +426,7 @@ In the following example we have two test classes that define separate executors
 
 The enclosing class may look like this -- in this case it turns off the `persistor`s for the included tests.
 
-    class TestSuite extends PerformanceTest.OfflineReport {
+    class TestSuite extends Bench.OfflineReport {
       def persistor = Persistor.None
     
       include[MemoryTest]

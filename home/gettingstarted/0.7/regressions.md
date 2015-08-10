@@ -44,7 +44,7 @@ Lets write a performance regression test the `foreach` method on the `Array` cla
 
     import org.scalameter.api._
     
-    class RegressionTest extends PerformanceTest.Regression {
+    class RegressionTest extends Bench.Regression {
       def persistor = new SerializationPersistor
       val sizes = Gen.range("size")(1000000, 5000000, 2000000)
       val arrays = for (sz <- sizes) yield (0 until sz).toArray
@@ -61,7 +61,7 @@ Lets write a performance regression test the `foreach` method on the `Array` cla
       }    
     }
 
-We extend the `PerformanceTest.Regression` class this time, which is
+We extend the `Bench.Regression` class this time, which is
 a preconfigured template for doing regression testing.
 This kind of a test has several smart facilities already in place to
 ensure more stable and reproducible testing.
