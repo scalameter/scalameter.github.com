@@ -12,66 +12,125 @@ outof: 50
 ScalaMeter tests can be (despite what the name might suggest) written in Java as well.
 This section shows the basics of how to do this.
 
-Lets create a new file named `JavaRegressionTest2.java`.
+Lets create a new file named `MyHistogramTest.java`.
 We will use it to write an offline report test, which tests the performance of a histogram application.
 We will traverse a linked list and group its elements to different linked lists in a hash map.
 We start by importing the following package, which allows us to use the ScalaMeter's Java interface:
 
     import org.scalameter.japi.*;
+    
+Next, we import required anntoations from the `annotation` subpackage:
 
-Next, we import the following classes for our test:
+    import org.scalameter.japi.annotation.*;
+
+We should also import the following classes for our test:
 
     import java.util.HashMap;
     import java.util.Iterator;
     import java.util.LinkedList;
 
-We extend the `OfflineReport` class -- you can read more about it in the [configuration section](/home/gettingstarted/0.7/configuration/index.html):
+We extend the `JBench.OfflineReport` class -- you can read more about it in the [configuration section](/home/gettingstarted/0.7/configuration/index.html):
 
-    public class MyHistogramTest extends OfflineReport {
-
-Next, we implement the `javaPersistor` method -- you can read more about this in the [configuration section](/home/gettingstarted/0.7/configuration/index.html):
-
-      public Persistor javaPersistor() {
-        return new SerializationPersistor();
-      }
+    public class MyHistogramTest extends JBench.OfflineReport {
 
 Benchmarks in a test are organized into groups.
-In the Scala frontend, we encoded the groups using nested closures.
-In the Java frontend, we encode them by implementing the `Group` interface.
-We now declare a `List` benchmark group:
+In the Scala frontend, we encode the groups using nested closures.
+In the Java frontend, we encode them by placing the `benchmark` annotation 
+whose `String` argument denotes the group that the benchmark belongs to.
+We now declare benchmark snippet stub in the `ops` group that is nested in the `list` group:
 
-      public class List implements Group {
+      @benchmark("list.ops")
+      public void histogram() {
+      
+      }
+      
+Next, we want to declare a custom configuration context, which we will name `config`:
 
-Next, we declare a `Using` class for the benchmark.
-In the Scala frontend, this is achieved with the `using` block, as described in the [simple microbenchmark example](/home/gettingstarted/0.7/simplemicrobenchmark/index.html).
+      public final Context config = new ContextBuilder()
+          .put("exec.benchRuns", 20)
+          .put("exec.independentSamples", 1)
+          .put("exec.outliers.covMultiplier", 1.5)
+          .put("exec.outliers.suspectPercent", 40)
+          .build();
+          
+Let's assume that we want to apply this custom `config` not only to our `histogram` method,
+but to all benchmark snippets in the `list` group.
+We do this by adding the optional `scopes` annotation to the `MyHistogramTest` class, as follows:
+    
+    @scopes({
+      @scopeCtx(scope = "list", context = "config")
+    })
+    public class MyHistogramTest extends JBench.OfflineReport {
 
-        public class groupBy
-        implements Using<LinkedList<Integer>, HashMap<Integer, LinkedList<Integer>>> {
+Next, we declare a generator for our snippet (see more about generators in the [generator section](/home/gettingstarted/0.7/generators/index.html)).
 
-To override the default configuration for a `Using` class or a `Group`,
-we declare a final `config` field of the type `JContext` (more about custom per-group configurations [here](/home/gettingstarted/0.7/configuration/index.html)):
+      public final JGen<Integer> sizes = JGen.intValues("size", 500000);
+    
+      public final JGen<Tuple2<Integer, LinkedList<Integer>>> lists = 
+        sizes.zip(sizes.map(
+            new Fun1<Integer, LinkedList<Integer>>() {
+              public LinkedList<Integer> apply(Integer v) {
+                return new LinkedList<Integer>();
+              }
+            }
+        ));
+      
+      @gen("lists")
+      @benchmark("list.ops")
+      public void histogram(Tuple2<Integer, LinkedList<Integer>> v) {
+        
+      }
 
-          public final JContext config = JContext.create()
-            .put("exec.benchRuns", 20)
-            .put("exec.independentSamples", 1)
-            .put("exec.outliers.covMultiplier", 1.5)
-            .put("exec.outliers.suspectPercent", 40);
+Now, assume that the list needs to be initialized with random data before the benchmark begins.
+We will declare our own custom setup method named `listSetup` that does this initialization.
+Then, to ensure that `listSetup` is invoked before the benchmark,
+we need to add the `@setup` annotation to the `histogram` method:
 
-Next, we declare a generator for the `groupBy` class (see more about generators in the [generator section](/home/gettingstarted/0.7/generators/index.html)):
+      public void listSetup(Tuple2<Integer, LinkedList<Integer>> v) {
+        int size = v._1();
+        LinkedList<Integer> list = v._2();
+    
+        Random random = new Random(size);
+        for (int i = 0; i < size; i++) {
+          list.add(random.nextInt(size));
+        }
+      }
+      
+      @gen("lists")
+      @setup("listSetup")
+      @benchmark("list.ops")
+      public void histogram(Tuple2<Integer, LinkedList<Integer>> v) {
+        
+      }
+      
+By default, the curve corresponding to the benchmark snippet will be equal to the method name.
+If we would like a custom name for this method, we need to use the `@curve` annotation:
 
-          public JavaGenerator<LinkedList<Integer>> generator() {
-            JavaGenerator<Integer> sizes = new SingleGen("size", 5000000);
-            return new CollectionGenerators(sizes).lists();
-          }
+      @gen("lists")
+      @setup("listSetup")
+      @curve("groupBy")
+      @benchmark("list.ops")
+      public void histogram(Tuple2<Integer, LinkedList<Integer>> v) {
+        
+      }
 
-Finally, we declare the code snippet for the test by implementing the `snippet` method:
+Finally, we add the actual code of the snippet method:
 
-    public HashMap<Integer, LinkedList<Integer>> snippet(LinkedList<Integer> in) {
-      HashMap<Integer, LinkedList<Integer>> hm = new HashMap<Integer, LinkedList<Integer>>();
+    @gen("lists")
+    @setup("listSetup")
+    @curve("groupBy")
+    @benchmark("list.ops")
+    public HashMap<Integer, LinkedList<Integer>> histogram(
+      Tuple2<Integer, LinkedList<Integer>> v
+    ) {
+      LinkedList<Integer> list = v._2();
+  
+      HashMap<Integer, LinkedList<Integer>> hm =
+          new HashMap<Integer, LinkedList<Integer>>();
       for (int i = 0; i < 10; i++) {
         hm.put(i, new LinkedList<Integer>());
       }
-      Iterator<Integer> it = in.iterator();
+      Iterator<Integer> it = list.iterator();
       while (it.hasNext()) {
         Integer element = it.next();
         LinkedList<Integer> tmp = hm.get(element % 10);
@@ -82,40 +141,61 @@ Finally, we declare the code snippet for the test by implementing the `snippet` 
     }
 
 The complete test is here:
-
-    public class MyHistogramTest extends OfflineReport {
-      public Persistor javaPersistor() {
-        return new SerializationPersistor();
-      }
-      public class List implements Group {
-        public class groupBy
-        implements Using<LinkedList<Integer>, HashMap<Integer, LinkedList<Integer>>> {
-          public final JContext config = JContext.create()
-            .put("exec.benchRuns", 20)
-            .put("exec.independentSamples", 1)
-            .put("exec.outliers.covMultiplier", 1.5)
-            .put("exec.outliers.suspectPercent", 40);
-          public JavaGenerator<LinkedList<Integer>> generator() {
-            JavaGenerator<Integer> sizes = new SingleGen("size", 5000000);
-            return new CollectionGenerators(sizes).lists();
-          }
-          public HashMap<Integer, LinkedList<Integer>> 
-            snippet(LinkedList<Integer> in) {
-            HashMap<Integer, LinkedList<Integer>> hm =
-              new HashMap<Integer, LinkedList<Integer>>();
-            for (int i = 0; i < 10; i++) {
-              hm.put(i, new LinkedList<Integer>());
+  
+    @scopes({
+      @scopeCtx(scope = "list", context = "config")
+    })
+    public class MyHistogramTest extends JBench.OfflineReport {
+      public final Context config = new ContextBuilder()
+          .put("exec.benchRuns", 20)
+          .put("exec.independentSamples", 1)
+          .put("exec.outliers.covMultiplier", 1.5)
+          .put("exec.outliers.suspectPercent", 40)
+          .build();
+    
+      public final JGen<Integer> sizes = JGen.intValues("size", 500000);
+    
+      public final JGen<Tuple2<Integer, LinkedList<Integer>>> lists = 
+        sizes.zip(sizes.map(
+            new Fun1<Integer, LinkedList<Integer>>() {
+              public LinkedList<Integer> apply(Integer v) {
+                return new LinkedList<Integer>();
+              }
             }
-            Iterator<Integer> it = in.iterator();
-            while (it.hasNext()) {
-              Integer element = it.next();
-              LinkedList<Integer> tmp = hm.get(element % 10);
-              tmp.add(element);
-              hm.put(element % 10, tmp);
-            }
-            return hm;
-          }
+        ));
+    
+      public void listSetup(Tuple2<Integer, LinkedList<Integer>> v) {
+        int size = v._1();
+        LinkedList<Integer> list = v._2();
+    
+        Random random = new Random(size);
+        for (int i = 0; i < size; i++) {
+          list.add(random.nextInt(size));
         }
+      }
+    
+      @gen("lists")
+      @setup("listSetup")
+      @curve("groupBy")
+      @benchmark("list.ops")
+      public HashMap<Integer, LinkedList<Integer>> histogram(
+        Tuple2<Integer, LinkedList<Integer>> v
+      ) {
+        LinkedList<Integer> list = v._2();
+    
+        HashMap<Integer, LinkedList<Integer>> hm =
+            new HashMap<Integer, LinkedList<Integer>>();
+        for (int i = 0; i < 10; i++) {
+          hm.put(i, new LinkedList<Integer>());
+        }
+        Iterator<Integer> it = list.iterator();
+        while (it.hasNext()) {
+          Integer element = it.next();
+          LinkedList<Integer> tmp = hm.get(element % 10);
+          tmp.add(element);
+          hm.put(element % 10, tmp);
+        }
+        return hm;
       }
     }
 
