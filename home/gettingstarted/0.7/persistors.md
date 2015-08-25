@@ -15,14 +15,13 @@ outof: 50
 They can be specified by overriding the `persistor` method in your benchmark class.
 
 
-## Persistor.None
+### Persistor.None
 
 It actually does no persisting at all.
-
 Use this persistor when you don't need to store benchmark result history.
 
 
-## SerializationPersistor
+### SerializationPersistor
 
 It uses `Java serialization` under the hood.  
 
@@ -30,14 +29,13 @@ Note that this persistor is not a good choice
 if you want to keep your results while upgrading `ScalaMeter` version.
 
 
-## JSONSerializationPersistor
+### JSONSerializationPersistor
 
 It writes regression data to disk as JSON. 
-
 It's the fastest among `Persistor`s, although it produces the largest output files.   
 
 
-## GZIPJSONSerializationPersistor
+### GZIPJSONSerializationPersistor
 
 Default choice for all `HTMLReport` descendants. 
 
