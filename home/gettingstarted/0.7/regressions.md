@@ -137,22 +137,25 @@ However, after a few runs of the test on our machine, the test fails!
              10, 10, 10, 10, 10, 11, 11, 11, 11, 11, 11, 11, 11, 11, ...
     ...
 
-It appears that our latest run of the benchmark is consistently slightly slower in that JVM instance.
-Effects like this are hard to predict -- they may be due to a memory allocation pattern, decisions
+It appears that our latest run of the benchmark
+is consistently slightly slower in that JVM instance.
+Effects like this are hard to predict --
+they may be due to a memory allocation pattern, decisions
 taken by the JIT compiler when optimizing the code or something entirely different.
 
-The result times of failed tests are not saved into history and running the test again ends
-successfully on our machine.
+The result times of failed tests are not saved into history and
+running the test again ends successfully on our machine.
 
 <div class="remark">
 <p class="remarktitle">Note</p>
 <p>
 Reproducing this effect really depends on your environment.
 It may happen every single time you run the test, or it may not happen at all.
-Make sure that you have nothing in your environment that affects CPU performances -- check for
-background processes or that your laptop is not running on battery power.
+Make sure that you have nothing in your environment that affects CPU performances --
+check for background processes or that your laptop is not running on battery power.
 <br/>
-If it does not happen at all for this example, you might have a different JVM or OS version.
+If it does not happen at all for this example,
+you might have a different JVM or OS version.
 </p>
 </div>
 
@@ -175,14 +178,14 @@ is controlled by the `reports.regression.noiseMagnitude` parameter).
 This again results in the tests being less sensitive to random variations.
 
 We can experiment easily with the first option.
-After setting the number of independent samples to `6` we are no longer able to reproduce
-the effect by running the benchmark many times.
+After setting the number of independent samples to `6` we are no longer able to
+reproduce the effect by running the benchmark many times.
 We also note that the confidence intervals now became larger, since there is a higher
 degree of variance in the tests.
 
 Before we move on to the next example, try to experiment with different `foreach` bodies
-to see how the code in the body affects the observed performance, and which point you can
-trigger a performance regression failure.
+to see how the code in the body affects the observed performance, and which point you
+can trigger a performance regression failure.
 
 Next, lets try to benchmark the `map` method on `List`s.
 The nature of this benchmark is very different than the previous one, because it will
@@ -323,22 +326,26 @@ If we examine the verbose output a bit more, we might notice something like this
       164, 164, 205, 210, 218, 224, 277, 281, 282, 310
 
 The `Measurer` component of the executor has done some measurements above, then sorted
-them and noticed that the last measurement is extremely different compared to the others.
+them and noticed that the last measurement is extremely different compared to the
+others.
 It then eliminated that measurement and redid it.
 This process is called *outlier elimination*.
 
 We can take advantage of the outlier elimination to stabilize our tests.
 What the outlier elimination does is it takes a look at the suffixes of the sorted set of
 measurements.
-If it observes that some suffix of measurements changes the [variance](http://en.wikipedia.org/wiki/Variance)
-of the entire set of measurements by more than some factor (called *coefficient of variance multiplier*) then
+If it observes that some suffix of measurements changes the
+[variance](http://en.wikipedia.org/wiki/Variance)
+of the entire set of measurements by more than some factor
+(called *coefficient of variance multiplier*) then
 it discards that suffix and redoes those measurements.
 The process is repeated up to a certain number of times.
 
 We can notice three parameters in this description:
 
 - `exec.outliers.suspectPercent` -- the percentage size of the largest suffix to examine
-- `exec.outliers.covMultiplier` -- the minimum factor by which removing the suffix changes the variance
+- `exec.outliers.covMultiplier` -- the minimum factor by which removing the
+  suffix changes the variance
 - `exec.outliers.retries` -- the number of times to repeat the process
 
 Lets tweak these a bit.
@@ -382,11 +389,14 @@ At the expense of an increased running time, we've obtained more stable results:
       - at size -> 5000000, 1 alternatives: passed
         (ci = <116.84, 176.46>, significance = 1.0E-10)
 
-This should demonstrate that there are tests which are inherently unstable and that you can sometimes
-work around those instabilities by configuring how you do the measurement.
-Generally, understanding why the test is unstable and what is the cause of noise is very helpful in
+This should demonstrate that there are tests which are inherently unstable
+and that you can sometimes work around those instabilities by configuring
+how you do the measurement.
+Generally, understanding why the test is unstable and
+what is the cause of noise is very helpful in
 eliminating it.
-When trying to figure out the cause of an instability, always try to ask questions like:
+When trying to figure out the cause of an instability,
+always try to ask questions like:
 
 - is my test allocation intensive?
 - does my test allocate a huge chunk of memory?
@@ -394,7 +404,7 @@ When trying to figure out the cause of an instability, always try to ask questio
 - does my test inherently trigger garbage collection cycles?
 - does my test allocate too much memory?
 
-In the next section we examine different [executors](/home/gettingstarted/0.7/executors/) in more detail.
+In the next section we examine different executors in more detail.
 
 
 <div class="imagenoframe">

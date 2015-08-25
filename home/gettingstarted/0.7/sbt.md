@@ -37,7 +37,8 @@ Open `build.sbt` again and add the following lines:
         logBuffered := false
 
 Latest sbt versions run tests in parallel by default.
-If there are multiple regression tests in project, than they will be executed in parallel during `sbt test`, potentially making results useless.
+If there are multiple regression tests in project, than they will be executed in
+parallel during `sbt test`, potentially making results useless.
 
 To disable this behaviour:
 
@@ -59,13 +60,27 @@ To run tests with arguments:
 
     > test-only mypackage.MyScalaMeterTestName -- <arguments>
 
+
+## Separating normal tests and benchmarks
+
+The previous section describes the simplest possible SBT configuration.
+However, in most cases, you will want to separate unit tests from benchmarks,
+as benchmarks are usually executed less frequently.
+
+[This example template](https://github.com/scalameter/scalameter-examples/tree/master/basic-with-separate-config)
+shows how to declare a separate folder for ScalaMeter benchmarks.
+This enables running the benchmarks with `bench:test` and `bench:test-only`.
+
+
 ## SBT/command line test arguments
 
 Below is a list of useful arguments.
 These can be used both from SBT and when running ScalaMeter from the command line.
 
-Since ScalaMeter 0.7, running a performance test by default produces verbose output about the status of the test.
-ScalaMeter shows information about running your benchmarks, warmup times, measuring time, etc.
+Since ScalaMeter 0.7, running a performance test by default produces verbose output
+about the status of the test.
+ScalaMeter shows information about running your benchmarks, warmup times,
+measuring time, etc.
 The `-silent` flag disables this verbose output:
 
     > test-only mypackage.MyScalaMeterTestName -- -silent
@@ -79,9 +94,11 @@ The `-CresultDir` option changes the directory the results are generated into:
 
     > test-only mypackage.MyScalaMeterTestName -- -CresultDir tmp2
 
-Starting from ScalaMeter 0.4 you can selectively run only certain tests from your test suite.
+Starting from ScalaMeter 0.4 you can selectively run only certain tests from your test
+suite.
 
-The `-CscopeFilter <test-name-regex>` option runs only the benchmarks whose name starts with `<test-name-regex>`.
+The `-CscopeFilter <test-name-regex>` option runs only the benchmarks whose name starts
+with `<test-name-regex>`.
 For example:
 
     > test-only mypackage.MyScalaMeterTestName -- -CscopeFilter 'Seq'

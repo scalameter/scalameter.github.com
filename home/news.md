@@ -18,7 +18,8 @@ permalink: /home/news/index.html
     </h1>
   </a>
   <div class="newsinfo">
-    <img width="15" height="15" src="/resources/images/calendar.png"/>&nbsp; {{ post.date | date: "%d.%m.%Y." }}, poster: {{ post.poster }}
+    <img width="15" height="15" src="/resources/images/calendar.png"/>
+    &nbsp; {{ post.date | date: "%d.%m.%Y." }}, poster: {{ post.poster }}
   </div>
   <br/>
   {{ post.content }}

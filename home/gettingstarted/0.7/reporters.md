@@ -13,9 +13,9 @@ outof: 50
 There are several predefined `Reporter`s available in ScalaMeter.
 An abstract `Reporter` trait defines two overloaded methods called `report`:
 
-    trait Reporter {
-      def report(result: CurveData, persistor: Persistor): Unit
-      def report(results: Tree[CurveData], persistor: Persistor): Unit
+    trait Reporter[T] {
+      def report(result: CurveData[T], persistor: Persistor): Unit
+      def report(results: Tree[CurveData[T]], persistor: Persistor): Unit
     }
 
 The first `report` method is invoked by ScalaMeter whenever an `Executor` completes
@@ -23,8 +23,10 @@ any single test.
 The second `report` method is invoked at the end when all of the tests are finished
 executing.
 If you plan to implement your own `Reporter` from scratch, then you should take
-a look at the [ScalaMeter API](http://lampwww.epfl.ch/~prokopec/scalameter/index.html#package) to better understand what the parameters
-are, as well as how other important ScalaMeter datatypes work.
+a look at the
+[ScalaMeter API](http://lampwww.epfl.ch/~prokopec/scalameter/index.html#package)
+to better understand what the parameters are,
+as well as how other important ScalaMeter datatypes work.
 <br/>
 Otherwise, there are plenty of predefined reporters to choose from.
 
@@ -113,7 +115,9 @@ This factory also only works correctly only for 2D data.
 
 ## DSV reporter
 
-Produces a DSV file for each curve with results that can be used for visualization. Every row represents an average obtained for one parameter combination for a specific test date. Confidence intervals are also included.
+Produces a DSV file for each curve with results that can be used for visualization.
+Every row represents an average obtained for one parameter combination for a specific
+test date. Confidence intervals are also included.
 
 Constructor arguments:
 
@@ -128,15 +132,29 @@ Configuration:
 ## HTML reporter
 
 Creates an HTML document with reports for all the tests.
-This reporter creates an interactive page which gives an overview of all test groups and curves.
-The page is capable of rendering charts in SVG format using the [D3.js](http://d3js.org/) library.
-Performance data can be filtered by curve, date, and [Generator](/scalameter/home/gettingstarted/0.7/generators) dimensions.
+This reporter creates an interactive page which gives an overview of all test groups and
+curves. The page is capable of rendering charts in SVG format
+using the [D3.js](http://d3js.org/) library.
+Performance data can be filtered by curve, date, and
+[Generator](/scalameter/home/gettingstarted/0.7/generators) dimensions.
 All filter parameters are set directly from within the HTML UI.
-Permalinks for specific filter configurations can be generated as a simple way of storing or sharing filter parameters.
+Permalinks for specific filter configurations can be generated as a simple way of
+storing or sharing filter parameters.
 
-`HtmlReporter` internally uses a `DsvReporter` to export performance data. It can either be exported to individual files for each curve, or embedded in the generated `data.js` file. The latter is particularly useful in cases where the JavaScript code has no access to the DSV files. This typically happens when opening the generated HTML document from the local file system. Most browsers enforce a [same origin policy](http://en.wikipedia.org/wiki/Same_origin_policy) that prevents JavaScript code from accessing local files.
+`HtmlReporter` internally uses a `DsvReporter` to export performance data.
+It can either be exported to individual files for each curve,
+or embedded in the generated `data.js` file.
+The latter is particularly useful in cases where the JavaScript code has no access
+to the DSV files.
+This typically happens when opening the generated HTML document from the local file
+system. Most browsers enforce a
+[same origin policy](http://en.wikipedia.org/wiki/Same_origin_policy)
+that prevents JavaScript code from accessing local files.
 
-The `HtmlReporter` has to be used in combination with a `RegressionReporter` (see below) in order to have access to a history of running times. In the composition, `RegressionReporter` has to precede `HtmlReporter` in order for the history to include the most recent run, e.g. like this:
+The `HtmlReporter` has to be used in combination with a `RegressionReporter`
+(see below) in order to have access to a history of running times.
+In the composition, `RegressionReporter` has to precede `HtmlReporter`
+in order for the history to include the most recent run, e.g. like this:
 
     def reporter: Reporter = Reporter.Composite(
       new RegressionReporter(
@@ -148,11 +166,13 @@ The `HtmlReporter` has to be used in combination with a `RegressionReporter` (se
 
 Constructor arguments:
 
-- `embedDsv` -- when set to `true`, data is embedded in `data.js`, otherwise a separate DSV file is created for each curve
+- `embedDsv` -- when set to `true`, data is embedded in `data.js`,
+  otherwise a separate DSV file is created for each curve
 
 Configuration:
 
-- `reports.resultDir` -- the directory in which the report page and its resources are generated
+- `reports.resultDir` -- the directory in which the report page and
+  its resources are generated
 
 
 ## Regression reporter
@@ -169,11 +189,13 @@ This reporter has to be used with a persistor different than `Persistor.None`.
 Otherwise, it will have nothing to compare the results against, and it will not be able
 to persist the results if the tests are successful.
 
-We will explain this reporter in more detail in the section on [performance regression testing](/home/gettingstarted/0.7/regressions/),
+We will explain this reporter in more detail in the section on
+[performance regression testing](/home/gettingstarted/0.7/regressions/),
 where we show how to do performance regression tests on a concrete example.
 In the meanwhile, we note that a regression reporter takes two parameters, namely, the
 `Tester` and the `Historian`.
-The former abstracts away the testing methodology, while the latter can prune the running time
+The former abstracts away the testing methodology,
+while the latter can prune the running time
 history so that it does not grow too large.
 
 Constructor arguments:
@@ -184,31 +206,37 @@ Constructor arguments:
 Configuration:
 
 - `reports.resultDir` -- the directory in which the performance results are persisted
-- `reports.regression.significance` -- the significance level for the statistical test, which
-is equal to `1 - confidenceLevel`, where a confidence level is the probability that the real running
-time is in the computed confidence interval (the bottomline is -- the smaller the significance
-level, the less likely the test reports false regressions, but may fail to report some real
-regressions)
+- `reports.regression.significance` -- the significance level for the statistical test,
+   which is equal to `1 - confidenceLevel`, where a confidence level is the probability
+   that the real running time is in the computed confidence interval (the bottomline is
+   -- the smaller the significance level,
+   the less likely the test reports false regressions,
+   but may fail to report some real regressions)
 
 
 ### Testers
 
-The `RegressionReporter.Tester` trait represents the methodology used to test the results.
+The `RegressionReporter.Tester` trait represents the methodology used to test the
+results.
 There are several predefined implementations.
 
 `Tester.Accepter` just accepts the test results each time.
-If you need to build a history of running times for the test, this is a tester of choice.
+If you need to build a history of running times for the test,
+this is a tester of choice.
 
-`Tester.ANOVA` applies the [analysis of variance](http://en.wikipedia.org/wiki/Analysis_of_variance)
+`Tester.ANOVA` applies the
+[analysis of variance](http://en.wikipedia.org/wiki/Analysis_of_variance)
 technique to detect whether there is at least one alternative in the history
 which is statistically different from all the other alternatives.
-This tester is very sensitive and is particularly applicable if your running time history
-has a fixed size (i.e. the oldest results are thrown away -- see historians below).
+This tester is very sensitive and is particularly applicable if your running time
+history has a fixed size
+(i.e. the oldest results are thrown away -- see historians below).
 For unlimited history sizes, it might produce unreliable test results.
 
 `Tester.ConfidenceIntervals` computes the confidence interval for each of the
 alternatives in the history and the most recent alternative, as well as the
-confidence interval of the difference between the most recent and any previous alternative.
+confidence interval of the difference between the most recent and any previous
+alternative.
 If the confidence interval of the difference includes zero, the performance
 test is successful.
 The `strict` parameter can be set to `false`, in which case this tester also

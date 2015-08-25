@@ -15,21 +15,36 @@ how results are reported as well as tweak a range of test parameters
 selectively.
 Before we start, we note that we will be running all the tests from within
 an SBT project from now on.
-This might be a good idea to read up on [SBT integration](/home/gettingstarted/0.7/sbt/)
-if you haven't already.
+This might be a good idea to read up on
+[SBT integration](/home/gettingstarted/0.7/sbt/) if you haven't already.
 
 
 ## Predefined configurations
 
-Since ScalaMeter 0.7, the following predefined test configurations exist to help you get started quickly:
+Since ScalaMeter 0.7,
+the following predefined test configurations exist to help you get started quickly:
 
-- `Bench.QuickBenchmark` -- Explained in detail in the [simple microbenchmark section](/home/gettingstarted/0.7/simplemicrobenchmark). Good for quick testing to get a feel for how long something takes.
-- `Bench.MicroBenchmark` -- Runs a separate JVM and logs outputs to console, but generates no HTML document and does no regression testing. Good for reliable and repeatable testing where micro-optimizations play a role.
-- `Bench.OnlineRegressionReport` -- Runs in a separate JVM, generates a HTML report ready to be hosted online, and does regression testing. Method of choice for continuous integration.
-- `Bench.OfflineRegressionReport` -- Runs in a separate JVM, generates a HTML report ready to be viewed in your browser from `file://` schema, and does regression testing. Ideal for local development on existing codebase when source code changes must not cause performance regressions.
-- `Bench.OfflineReport` -- Runs in a separate JVM, generates a HTML report for offline viewing in the browser, and does no regression testing. Ideal when developing a new codebase or tweaking the code to understand performance impacts.
+- `Bench.LocalTime` -- Explained in detail in the
+  [simple microbenchmark section](/home/gettingstarted/0.7/simplemicrobenchmark).
+  Good for quick testing to get a feel for how long something takes.
+- `Bench.ForkedTime` -- Runs a separate JVM and logs outputs to console,
+  but generates no HTML document and does no regression testing.
+  Good for reliable and repeatable testing where micro-optimizations play a role.
+- `Bench.OnlineRegressionReport` -- Runs in a separate JVM,
+  generates a HTML report ready to be hosted online, and does regression testing.
+  Method of choice for continuous integration.
+- `Bench.OfflineRegressionReport` -- Runs in a separate JVM,
+  generates a HTML report ready to be viewed in your browser from `file://` schema,
+  and does regression testing.
+  Ideal for local development on existing codebase when source code changes
+  must not cause performance regressions.
+- `Bench.OfflineReport` -- Runs in a separate JVM,
+  generates a HTML report for offline viewing in the browser,
+  and does no regression testing. Ideal when developing a new codebase or tweaking the
+  code to understand performance impacts.
 
-Simply extend one of these traits to start writing the test with the desired functionality.
+Simply extend one of these traits to start writing the test
+with the desired functionality.
 If you would like to customize your test further, read on.
 
 
@@ -46,7 +61,8 @@ following order:
 4. Persisting test results with a **persistor**
 
 To explore these parts in more depth, we will modify the `RangeBenchmark`
-from the <a href="/home/gettingstarted/0.7/simplemicrobenchmark">Simple benchmark</a> section.
+from the
+<a href="/home/gettingstarted/0.7/simplemicrobenchmark">Simple benchmark</a> section.
 We focus on the executor part first.
 We will no longer inherit the `Bench.Quickbenchmark` class,
 but `Bench` directly.
@@ -85,20 +101,26 @@ namely, the members `executor`, `reporter` and `persistor`.
       }
     }
 
-We've configured these three parts in exactly the same way as they are defined in the previously
+We've configured these three parts in exactly the same way
+as they are defined in the previously
 inherited `Bench.Quickbenchmark` class.
-The `executor` decides how the tests are executed, how the measurements are done and how the results
+The `executor` decides how the tests are executed,
+how the measurements are done and how the results
 are interpreted.
-We intend to run the tests in the same JVM instance as ScalaMeter, so we instantiate a `LocalExecutor`.
-We want to take the minimum running time of all the benchmarks run for each size, so we set the
+We intend to run the tests in the same JVM instance as ScalaMeter,
+so we instantiate a `LocalExecutor`.
+We want to take the minimum running time of all the benchmarks run for each size,
+so we set the
 `Aggregator` for the executor to `Aggregator.min`.
 We just want to do a fixed number of measurements for each size, so we set
 the `Measurer` to `Measurer.Default`.
 
-The `reporter` creates reports based on the results -- we want to output results to the terminal,
+The `reporter` creates reports based on the results --
+we want to output results to the terminal,
 so we instantiate the `LoggingReporter`.
 The `persistor` saves the results of the test.
-We don't need this functionality right now, so we just use `Persistor.None`, which does absolutely
+We don't need this functionality right now,
+so we just use `Persistor.None`, which does absolutely
 nothing.
 
 We can now run the benchmark in SBT as follows:
@@ -119,8 +141,10 @@ We can now run the benchmark in SBT as follows:
 
 Whoa!
 What happened just now?
-We are still running the benchmark on exactly the same machine and environment as before, but it seems
-that the running times have changed by a factor of more than `2` with respect to the run from the
+We are still running the benchmark on exactly
+the same machine and environment as before, but it seems
+that the running times have changed by a factor of more than `2`
+with respect to the run from the
 previous section:
 
     Parameters(size -> 300000): 2.0
@@ -135,20 +159,27 @@ A quick revert of our recent inheritance changes would reveal that's not the cas
 So what could it be?
 
 An answer might sound surprising.
-The difference between the two runs is that in the previous section we've run the test directly
-from the command-line, and now we run it in the same JVM instance in which SBT is running.
-SBT loads a lot of different classes into the JVM, many of which may change how our benchmark
+The difference between the two runs is that in the previous
+section we've run the test directly
+from the command-line,
+and now we run it in the same JVM instance in which SBT is running.
+SBT loads a lot of different classes into the JVM,
+many of which may change how our benchmark
 code is compiled, whereas running the benchmark through command-line loads only the bare
 essentials needed to run ScalaMeter.
-Code in some of the SBT classes may be preventing the JIT compiler to apply some optimizations
+Code in some of the SBT classes may be preventing
+the JIT compiler to apply some optimizations
 to our code.
 <br/>
 Orthogonal to that, the two JVM instances have entirely different heap sizes -- notice
-how the performance was linear when running from SBT, while it degraded in the previous benchmark
+how the performance was linear when running from SBT,
+while it degraded in the previous benchmark
 for larger `Range`s, indicating that memory allocations took more time on average.
 
-To ensure that the tests are run in a separate JVM, we only need to change the `executor`
-to a special `SeparateJvmsExecutor`. This executor will start at least one new JVM instance
+To ensure that the tests are run in a separate JVM,
+we only need to change the `executor`
+to a special `SeparateJvmsExecutor`.
+This executor will start at least one new JVM instance
 for each test and run the tests from the new JVM.
 The new JVM has the default heap size set to 2GB.
 This way:
@@ -175,7 +206,8 @@ Running the test from SBT now yields the following output:
     [info] Parameters(size -> 1500000): 11.0
 
 We've just eliminated both effects seen earlier.
-First, the `Range` code is optimized better just like in the earlier command-line example.
+First, the `Range` code is optimized better
+just like in the earlier command-line example.
 We can notice this with the smaller ranges.
 Second, the scaling is now linear just like in the SBT example.
 This becomes apparent with the larger ranges.
@@ -185,7 +217,8 @@ This becomes apparent with the larger ranges.
 <p>
 Again, these tests were taken on a 4-core 3.4 GHz i7 iMac, Mac OS X 10.7.5,
 JRE 7 update 9 and Scala 2.10-RC2.
-The SBT heap size was set to 4GB, and the <code>scala</code> runner script default heap size
+The SBT heap size was set to 4GB, and the <code>scala</code>
+runner script default heap size
 is 256MB for Scala 2.10-RC2.
 Depending on your machine and environment, you might get very different results
 than the ones above.
@@ -197,7 +230,8 @@ even with relatively simple code.
 An additional observation is that the `Range` class behaves very differently depending
 on the program in which it is used.
 
-We will use the `SeparateJvmsExecutor` unless we say otherwise, since its results are the
+We will use the `SeparateJvmsExecutor` unless we say otherwise,
+since its results are the
 easiest to reproduce.
 We remarked above that each executor takes additional 2 parameters, namely, the
 `Aggregator` and a `Measurer`.
@@ -217,7 +251,8 @@ The `ChartReporter` constructor takes several parameters, the most important of 
 the `ChartFactory`.
 The same test data can be presented in many different ways -- as a histogram, confidence
 interval comparison, a 3D chart, and so on.
-These are described in more detail in the [Reporters](/home/gettingstarted/0.7/reporters/) section.
+These are described in more detail in the
+[Reporters](/home/gettingstarted/0.7/reporters/) section.
 We want a simple XY line chart now, so we create a `ChartFactory.XYLine()` object.
 
 Running the benchmark from SBT like before will not produce any terminal output.
@@ -245,8 +280,8 @@ after the name of the test (i.e. your main class).
 </div>
 
 Now the test results are generated into a new subdirectory `tmp1`.
-The `reports.resultDir` is a global test parameter, so it can only be set when you start the
-tests.
+The `reports.resultDir` is a global test parameter,
+so it can only be set when you start the tests.
 Unlike the resulting directory, other test parameters can be configured hierarchically
 and selectively for each test, rather than once globally.
 
@@ -375,17 +410,24 @@ For example, all the parameters which have something to do with test execution
 will begin with the `exec` prefix.
 There are many different parameters you can configure -- we will enumerate them
 as we describe different parts of the pipeline.
-In the next section we talk in more detail about [generators](/home/gettingstarted/0.7/generators/).
+In the next section we talk in more detail about
+[generators](/home/gettingstarted/0.7/generators/).
 
 
 ## Writing larger test suites
 
-What if you have a larger test suite consisting of multiple test classes and each test class has a different `executor`?
-For example, some tests could measure the memory footprint, while others could measure the running time.
-In this case you have the option of using the `include` keyword, which includes the test cases from the referenced test classes.
-Importantly, these test classes can define separate executors used by their respective test cases -- for each test case
-the `include` directive will ensure that the executor of the respective test class is used.
-However, the `persistor` and `reporter` values are overridden by the `include` directive -- only the persistors
+What if you have a larger test suite consisting of multiple test classes
+and each test class has a different `executor`?
+For example, some tests could measure the memory footprint,
+while others could measure the running time.
+In this case you have the option of using the `include` keyword,
+which includes the test cases from the referenced test classes.
+Importantly, these test classes can define separate executors used
+by their respective test cases -- for each test case
+the `include` directive will ensure that the executor of the respective test class
+is used.
+However, the `persistor` and `reporter` values
+are overridden by the `include` directive -- only the persistors
 and the reporters from the enclosing class are used. 
 
 In the following example we have two test classes that define separate executors.
@@ -424,7 +466,8 @@ In the following example we have two test classes that define separate executors
       }
     }
 
-The enclosing class may look like this -- in this case it turns off the `persistor`s for the included tests.
+The enclosing class may look like this --
+in this case it turns off the `persistor`s for the included tests.
 
     class TestSuite extends Bench.OfflineReport {
       def persistor = Persistor.None

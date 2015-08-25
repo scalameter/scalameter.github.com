@@ -6,12 +6,24 @@ permalink: /home/authors/index.html
 
 ## ScalaMeter team
 
-ScalaMeter was developed by [Aleksandar Prokopec](http://people.epfl.ch/aleksandar.prokopec) from the [Scala Team](http://lamp.epfl.ch/) at the [EPFL](http://epfl.ch/),
+ScalaMeter was developed by
+[Aleksandar Prokopec](http://people.epfl.ch/aleksandar.prokopec)
+from the [Scala Team](http://lamp.epfl.ch/) at the [EPFL](http://epfl.ch/),
 and [Josh Suereth](http://jsuereth.com/) from [Typesafe](http://typesafe.com/).
 
-The interactive HTML-based performance result visualizations have been designed and implemented by [Roman Zoller](https://github.com/rzoller).
+The interactive HTML-based performance result visualizations have been designed and
+implemented by [Roman Zoller](https://github.com/rzoller).
 
-Special thanks goes to [Ngoc Duy Pham](https://github.com/ngocduy-pham) for doing preliminary research
+[Krzysztof Janosz](https://github.com/kjanosz)
+is the star of the groundbreaking 0.7 release,
+and is the person to thank for the new annotation-based Java-compatible frontend,
+extending ScalaMeter to arbitrary data-types,
+implementing method invocation counting measurers,
+backwards-compatible benchmark serialization format,
+and much more.
+
+Special thanks goes to [Ngoc Duy Pham](https://github.com/ngocduy-pham)
+for doing preliminary research
 on the techniques used in ScalaMeter.
 
 ## Committers

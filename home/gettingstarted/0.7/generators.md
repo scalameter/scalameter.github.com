@@ -24,8 +24,10 @@ The trait `Gen[T]` looks roughly like this:
       def generate(params: Parameters): T
     }
 
-ScalaMeter generators are **lazy** -- they do not internally hold references to test input objects by default.
-Instead, they generate them lazily when calling the `next` method of their input data iterators.
+ScalaMeter generators are **lazy** --
+they do not internally hold references to test input objects by default.
+Instead, they generate them lazily when calling the `next` method
+of their input data iterators.
 
 As mentioned earlier, generators are divided into two main categories -- the
 *basic* generators and the *composed* generators.
@@ -78,18 +80,23 @@ This same name will be the name of an axis when you generate a chart using
 a `ChartReporter`.
 
 A special, caching, generator can be obtained by calling `cached` on a generator.
-This generator will not recreate the test input values each time the input data is traversed.
-Instead, it will create the data only once on first iteration and keep it cached afterwards.
-This is useful to avoid regenerating expensive objects like thread pools or database connections
+This generator will not recreate the test input values each time the input
+data is traversed.
+Instead, it will create the data only once on first iteration and keep it
+cached afterwards.
+This is useful to avoid regenerating expensive objects
+like thread pools or database connections
 when only a few such objects are needed during the entire test.
 
-    class CachedGeneratorTest extends Bench.Regression {
+    class CachedGeneratorTest
+    extends Bench.OnlineRegressionReport {
       def persistor = new persistence.SerializationPersistor
     
       val sizes = Gen.range("size")(100000000, 500000000, 200000000)
       val parallelismLevels = Gen.enumeration("parallelismLevel")(1, 2, 4, 8)
       val pools = (for (par <- parallelismLevels) yield
-        new collection.parallel.ForkJoinTaskSupport(new concurrent.forkjoin.ForkJoinPool(par))).cached
+        new collection.parallel.ForkJoinTaskSupport(
+          new concurrent.forkjoin.ForkJoinPool(par))).cached
       val inputs = Gen.tupled(sizes, pools)
     
       performance of "foreach" in {
@@ -129,7 +136,8 @@ of a benchmark run using it will depend on two input parameters.
 <br/>
 Such data dependency is best displayed using a 3D chart.
 
-In the next section we take a look at the different [reporters](/home/gettingstarted/0.7/reporters/).
+In the next section we take a look at the different
+[reporters](/home/gettingstarted/0.7/reporters/).
 
 
 

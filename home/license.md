@@ -16,7 +16,7 @@ See the full license below.
 
 # ScalaMeter LICENSE
 
-Copyright &copy; 2012, Aleksandar Prokopec
+Copyright &copy; 2012-2015, Aleksandar Prokopec
 
 All rights reserved.
 

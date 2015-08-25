@@ -10,7 +10,8 @@ outof: 50
 ---
 
 
-Lets assume we want to write and run a simple microbenchmark which tests the `map` method on the Scala `Range` class.
+Lets assume we want to write and run
+a simple microbenchmark which tests the `map` method on the Scala `Range` class.
 This section shows the basics of how to do this.
 
 
@@ -19,14 +20,22 @@ This section shows the basics of how to do this.
 ScalaMeter requires at least JRE 7 update 4 and Scala 2.10 to be run.
 
 1. Make sure you have at least JRE 7 update 4 installed on your machine.<br/>
-[Download](http://www.java.com) the latest version or update an existing one.
+   [Download](http://www.java.com) the latest version or update an existing one.
 
 2. Make sure you have at least Scala 2.10 installed on your machine.<br/>
-[Download](http://www.scala-lang.org/downloads) and install Scala 2.10 if you don't have a newer version.
+   [Download](http://www.scala-lang.org/downloads) and install Scala 2.10
+   if you don't have a newer version.
 
-3. Go to the [download](/home/download/) section and download the latest release of ScalaMeter.
+3. Go to the [download](/home/download/) section and
+   download the latest release of ScalaMeter.
 
-4. Create a new project and a new file named `RangeMicrobenchmark.scala` in your editor.
+4. Create a new project and a new file named `RangeMicrobenchmark.scala`
+   in your editor.
+
+Alternatively, if you are using [SBT](http://www.scala-sbt.org/) for your project,
+you can skip the steps 2-4, and set up your project using the following
+[example template](https://github.com/scalameter/scalameter-examples/tree/master/basic-with-separate-config).
+This is explained in the [SBT section](/home/gettingstarted/0.7/sbt)
 
 
 ## Implementing the microbenchmark
@@ -36,18 +45,19 @@ Start with the following `import` statement:
     import org.scalameter.api._
 
 This gives us access to most of the ScalaMeter API.
-Alternatively, we can import different parts of ScalaMeter selectively, but this will do for now.
+Alternatively, we can import different parts of ScalaMeter selectively,
+but this will do for now.
 
-A ScalaMeter represents performance tests with the `Bench` abstract class -- to implement a
-performance test, we have to extend this class.
+A ScalaMeter represents performance tests with the `Bench` abstract class --
+to implement a performance test, we have to extend this class.
 A performance test can either be a singleton `class` or a `object`.
-The only difference from ScalaMeter's point of view is that `object` performance tests will have
-a `main` method, hence being runnable applications.
+The only difference from ScalaMeter's point of view is that `object`
+performance tests will have a `main` method, hence being runnable applications.
 
 For that reason, we choose the latter:
 
     object RangeBenchmark
-    extends Bench.Quickbenchmark {
+    extends Bench.LocalTime {
 
       // multiple tests can be specified here
 
@@ -55,43 +65,49 @@ For that reason, we choose the latter:
 
 The `Bench` abstract class is a highly configurable test template which allows more than
 we need right now.
-Instead of inheriting it directly, we inherit a predefined class called `Bench.Quickbenchmark`
-which is a performance test configured to simply run the tests and output them in the terminal.
+Instead of inheriting it directly, we inherit a predefined class called
+`Bench.LocalTime`, which is a performance test configured to simply
+run the tests and output them in the terminal.
 
 Most benchmarks need input data that they are executed on.
-To define input data in a clean and composable manner ScalaMeter supports data generators
-represented by the `Gen` interface.
-These generators are similar to the ones in frameworks like [ScalaCheck](https://github.com/rickynils/scalacheck/wiki/User-Guide)
-in that they are composable with `for`-comprehensions and that they can generate multiple values.
-However, ScalaMeter generators do not generate random or arbitrary values -- the values they produce
-are always the same, ordered and well-defined.
+To define input data in a clean and composable manner ScalaMeter supports data
+generators represented by the `Gen` interface.
+These generators are similar to the ones in frameworks like
+[ScalaCheck](https://github.com/rickynils/scalacheck/wiki/User-Guide)
+in that they are composable with `for`-comprehensions and that they can generate
+multiple values.
+However, ScalaMeter generators do not generate random or arbitrary values --
+the values they produce are always the same, ordered and well-defined.
 
-ScalaCheck generators can be roughly divided into 2 groups -- *basic* and *composed* generators.
+ScalaCheck generators can be roughly divided into 2 groups --
+*basic* and *composed* generators.
 There exist a number of basic generators already defined for you.
 One of them is called `Gen.range`, and it generates integers in a specified range.
 
     val sizes: Gen[Int] = Gen.range("size")(300000, 1500000, 300000)
 
-This creates a generator which generates integers the range from `300000` to `1500000` in
-steps of `300000`.
-A basic generator must always be given a name -- we call our basic generator `size`, because
-it will produce different sizes for our ranges.
+This creates a generator which generates integers the range from `300000` to `1500000`
+in steps of `300000`.
+A basic generator must always be given a name -- we call our basic generator `size`,
+because it will produce different sizes for our ranges.
 
-Our microbenchmark will not be taking sizes as inputs -- instead, it will take different ranges.
-For each of the different sizes generated by the above defined generator, we need one range.
+Our microbenchmark will not be taking sizes as inputs -- instead, it will take different
+ranges. For each of the different sizes generated by the above defined generator,
+we need one range.
 We can express this elegantly using a `for`-comprehension:
 
     val ranges: Gen[Range] = for {
       size <- sizes
     } yield 0 until size
 
-This `for`-comprehension says: For every `size` given by the `sizes` generator yield a range from `0`
-to `size`.
+This `for`-comprehension says: For every `size` given by the `sizes` generator yield
+a range from `0` to `size`.
 It produces a new generator `ranges` of type `Gen[Range]`.
-The new generator is a composed generator, because it has been obtain through a `for`-comprehension.
+The new generator is a composed generator, because it has been obtain through a
+`for`-comprehension.
 
-We're now done with defining input data for the benchmark, and we move on to defining the actual
-code that the benchmark is supposed to evaluate.
+We're now done with defining input data for the benchmark, and we move on to defining
+the actual code that the benchmark is supposed to evaluate.
 ScalaMeter defines a custom DSL for writing tests.
 The first important statement we need to know is `performance of`:
 
@@ -99,12 +115,13 @@ The first important statement we need to know is `performance of`:
       // nested tests
     }
 
-This statement has the effect that all the tests nested in the block behind `in` get a prefix `Range`
-in their name.
-You can nest `performance of` blocks arbitrarily deep to divide your tests in groups and achieve the
-desired hierarchy.
-The related statement `measure method` behaves in exactly the same way -- the only difference is its
-name, so you will usually write this one immediately surrounding your test:
+This statement has the effect that all the tests nested in the block behind `in` get a
+prefix `Range` in their name.
+You can nest `performance of` blocks arbitrarily deep to divide your tests in groups and
+achieve the desired hierarchy.
+The related statement `measure method` behaves in exactly the same way -- the only
+difference is its name, so you will usually write this one immediately surrounding your
+test:
 
     performance of "Range" in {
       measure method "map" in {
@@ -113,8 +130,8 @@ name, so you will usually write this one immediately surrounding your test:
     }
 
 In order to write the actual test, we have to tell ScalaMeter which data inputs to use.
-This is done with the `using` statement, which takes a generator and the snippet invoking
-a some code on a range `r`:
+This is done with the `using` statement, which takes a generator and the snippet
+invoking a some code on a range `r`:
 
     performance of "Range" in {
       measure method "map" in {
@@ -124,14 +141,14 @@ a some code on a range `r`:
       }
     }
 
-And that's it - we've defined a test group `Range.map` consisting of a single test where the elements
-of a range are `map`ped so that each element is incremented by one.
+And that's it - we've defined a test group `Range.map` consisting of a single test where
+the elements of a range are `map`ped so that each element is incremented by one.
 For the sake of completeness, here is the complete runnable test:
 
     import org.scalameter.api._
 
     object RangeBenchmark
-    extends Bench.Quickbenchmark {
+    extends Bench.LocalTime {
       val sizes = Gen.range("size")(300000, 1500000, 300000)
 
       val ranges = for {
@@ -159,10 +176,10 @@ Then run it:
 
     $ scala -cp scalameter_2.10-0.1.jar:. RangeBenchmark
 
-Alternatively, you can use [SBT](http://www.scala-sbt.org/) build tool, which is much simpler and the preferred
-way to run ScalaMeter tests in larger projects.
-A huge benefit of doing so is that you don't have to manually pick the correct Scala version and the ScalaMeter
-artifact - SBT does this for you automatically.
+Alternatively, you can use [SBT](http://www.scala-sbt.org/) build tool, which is much
+simpler and the preferred way to run ScalaMeter tests in larger projects.
+A huge benefit of doing so is that you don't have to manually pick the correct Scala
+version and the ScalaMeter artifact - SBT does this for you automatically.
 Also, with SBT you can run the tests directly from the SBT shell.
 See the section [SBT integration](/home/gettingstarted/0.7/sbt/) for details. 
 
@@ -180,7 +197,7 @@ After running the test, you should get an output similar to the following one:
     Parameters(size -> 1200000): 16.0
     Parameters(size -> 1500000): 30.0
 
-The `Bench.Quickbenchmark` class uses a simple terminal reporter, so
+The `Bench.LocalTime` class uses a simple terminal reporter, so
 all the results of the test are just printed to the standard output.
 The results are in milliseconds.
 We can see that the reporter outputs some machine-specific data, followed by the
@@ -190,22 +207,21 @@ results for each of the input parameters.
 <p class="remarktitle">Note</p>
 <p>
 Your mileage may vary!
-When writing these guidelines, the tests were taken on a 4-core 3.4 GHz i7 iMac, Mac OS X 10.7.5,
-JRE 7 update 9 and Scala 2.10-RC2.
+When writing these guidelines, the tests were taken on a 4-core 3.4 GHz i7 iMac,
+Mac OS X 10.7.5, JRE 7 update 9 and Scala 2.10-RC2.
 With a different configuration, particularly with different hardware, you might get
 entirely different running times.
 </p>
 </div>
 
-A `Bench.Quickbenchmark` is already configured to warm up the JVM and do several tests
+A `Bench.LocalTime` is already configured to warm up the JVM and do several tests
 for each input size.
 It takes the smallest time observed for each input size.
-Statistically, a mean running time gives much more insight into performance characteristics, but
-we will see how to obtain it later.
+Statistically, a mean running time gives much more insight into performance
+characteristics, but we will see how to obtain it later.
 
 And that's it -- you just wrote your first ScalaMeter microbenchmark.
-Next, you will see how to <a href="/home/gettingstarted/0.7/configuration/">configure test execution and
-test reporting</a>.
+Next, you will see how to configure test execution and test reporting.
 
 
 <div class="imagenoframe">
