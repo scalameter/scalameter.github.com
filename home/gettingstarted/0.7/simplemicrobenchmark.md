@@ -38,7 +38,7 @@ Start with the following `import` statement:
 This gives us access to most of the ScalaMeter API.
 Alternatively, we can import different parts of ScalaMeter selectively, but this will do for now.
 
-A ScalaMeter represents performance tests with the `PerformanceTest` abstract class -- to implement a
+A ScalaMeter represents performance tests with the `Bench` abstract class -- to implement a
 performance test, we have to extend this class.
 A performance test can either be a singleton `class` or a `object`.
 The only difference from ScalaMeter's point of view is that `object` performance tests will have
@@ -47,15 +47,15 @@ a `main` method, hence being runnable applications.
 For that reason, we choose the latter:
 
     object RangeBenchmark
-    extends PerformanceTest.Quickbenchmark {
+    extends Bench.Quickbenchmark {
 
       // multiple tests can be specified here
 
     }
 
-The `PerformanceTest` abstract class is a highly configurable test template which allows more than
+The `Bench` abstract class is a highly configurable test template which allows more than
 we need right now.
-Instead of inheriting it directly, we inherit a predefined class called `PerformanceTest.Quickbenchmark`
+Instead of inheriting it directly, we inherit a predefined class called `Bench.Quickbenchmark`
 which is a performance test configured to simply run the tests and output them in the terminal.
 
 Most benchmarks need input data that they are executed on.
@@ -131,7 +131,7 @@ For the sake of completeness, here is the complete runnable test:
     import org.scalameter.api._
 
     object RangeBenchmark
-    extends PerformanceTest.Quickbenchmark {
+    extends Bench.Quickbenchmark {
       val sizes = Gen.range("size")(300000, 1500000, 300000)
 
       val ranges = for {
@@ -180,7 +180,7 @@ After running the test, you should get an output similar to the following one:
     Parameters(size -> 1200000): 16.0
     Parameters(size -> 1500000): 30.0
 
-The `PerformanceTest.Quickbenchmark` class uses a simple terminal reporter, so
+The `Bench.Quickbenchmark` class uses a simple terminal reporter, so
 all the results of the test are just printed to the standard output.
 The results are in milliseconds.
 We can see that the reporter outputs some machine-specific data, followed by the
@@ -197,7 +197,7 @@ entirely different running times.
 </p>
 </div>
 
-A `PerformanceTest.Quickbenchmark` is already configured to warm up the JVM and do several tests
+A `Bench.Quickbenchmark` is already configured to warm up the JVM and do several tests
 for each input size.
 It takes the smallest time observed for each input size.
 Statistically, a mean running time gives much more insight into performance characteristics, but

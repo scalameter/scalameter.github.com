@@ -107,7 +107,7 @@ Finally, it calls GC again and records the memory occupancy again -- call this v
 The value `memafter - membefore` in kilobytes is the memory footprint it outputs.
 The use is illustrated by the following snippet:
 
-    class MemoryTest extends PerformanceTest.Regression {
+    class MemoryTest extends Bench.Regression {
       def persistor = new persistence.SerializationPersistor
       override def measurer = new Executor.Measurer.MemoryFootprint
     
@@ -166,7 +166,7 @@ hence `SeparateJvmsExecutor` must be used as an executor.
 `BoxingCount` simply counts (auto)boxing of primitives: `Boolean`, `Byte`, `Char`, `Short`, `Int`, `Long`, `Float` and `Double`.
 You can either specify primitives you would like to count or count all of them by using the `BoxingCount.all()` method.
 
-    class BoxingCountTest extends PerformanceTest.MicroBenchmark {
+    class BoxingCountTest extends Bench.MicroBenchmark {
         override def measurer = BoxingCount(classOf[Short], classOf[Int], classOf[Long]) // we want to measure (auto)boxing of short, int and long values
 
         // benchmark body
@@ -174,7 +174,7 @@ You can either specify primitives you would like to count or count all of them b
 
 `MethodInvocationCount` can count invocations of arbitrary methods. It is configured with its `InvocationCountMatcher` constructor argument.
 
-    class MethodInvocationCountTest extends PerformanceTest.OfflineReport {
+    class MethodInvocationCountTest extends Bench.OfflineReport {
         override def measurer = MethodInvocationCount(InvocationCountMatcher.forName("scala.collection.immutable.Vector", "length"))
 
         // benchmark body

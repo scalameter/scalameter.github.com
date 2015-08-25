@@ -83,7 +83,7 @@ Instead, it will create the data only once on first iteration and keep it cached
 This is useful to avoid regenerating expensive objects like thread pools or database connections
 when only a few such objects are needed during the entire test.
 
-    class CachedGeneratorTest extends PerformanceTest.Regression {
+    class CachedGeneratorTest extends Bench.Regression {
       def persistor = new persistence.SerializationPersistor
     
       val sizes = Gen.range("size")(100000000, 500000000, 200000000)
