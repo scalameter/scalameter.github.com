@@ -4,7 +4,8 @@ title: ScalaMeter
 ---
 
 
-ScalaMeter is a performance regression testing framework for Scala and Java.
+ScalaMeter is a benchmarking and performance regression testing
+framework for Scala and Java.
 
 
 
