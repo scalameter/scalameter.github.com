@@ -1,0 +1,121 @@
+* gaining knowledge
+  - ScalaMeter
+    - [X] [[https://scalameter.github.io/home/gettingstarted/0.7/][ScalaMeter tutorial]]
+  - Benchmarking
+    - [X] [[http://www.ibm.com/developerworks/library/j-jtp02225/][Java theory and practice: Anatomy of a flawed microbenchmark]]
+    - [X] [[https://buytaert.net/files/oopsla07-georges.pdf][Statistically Rigorous Java Performance Evaluation]]
+  - Code manipulation
+    - [X] [[http://asm.ow2.org/current/asm-eng.pdf][ASM: a code manipulation tool to implement adaptable systems]] 
+    - [X] [[http://asm.ow2.org/current/asm-transformations.pdf][Using the ASM framework to implement common Java bytecode transformation patterns]]
+    - [X] [[https://sdqweb.ipd.kit.edu/mediawiki-sdq-extern/images/a/a5/Kuperberg2008a.pdf][ByCounter: Portable Runtime Counting of Bytecode Instructions and Method Invocations]]
+
+    
+* warmup tasks
+  
+** DONE fix [[https://github.com/scalameter/scalameter/issues/98][scalameter#98]]
+   SCHEDULED: <2015-05-22 Fri> 
+   DEADLINE: <2015-06-01 Mon>
+   Was already fixed in master.
+
+** DONE resolve [[https://github.com/scalameter/scalameter/issues/94][scalameter#94]]
+   SCHEDULED: <2015-05-22 Fri>
+   DEADLINE: <2015-06-01 Mon>
+
+** DONE automate release process
+   SCHEDULED: <2015-05-22 Fri>
+   DEADLINE: <2015-06-01 Mon> 
+   - [X] automate release process for scalameter
+   - [X] update version stuff in scalameter-examples
+
+** DONE add scalameter examples to scalameter/scalameter-examples repo
+   SCHEDULED: <2015-05-22 Fri>
+   DEADLINE: <2015-06-01 Mon>
+   - [X] add some basic example
+   - [X] add travis build that triggers scalameter-examples compilation upon scalameter update
+    See [[http://eng.rightscale.com/2015/04/27/dependent-builds-in-travis.html][dependent builds in travis]] or make artificial squash-force commit in scalameter build.
+
+
+* implement a binary-compatible Persistor
+  
+** DONE outline solutions
+   SCHEDULED: <2015-06-01 Mon>
+   DEADLINE: <2015-06-04 Thu>
+
+** DONE implement
+   SCHEDULED: <2015-06-04 Thu>
+   DEADLINE: <2015-06-10 Wed>
+   - [X] implement chosen solution
+   - [X] test correctness, space consumption and performance 
+
+** DONE add documentation
+   SCHEDULED: <2015-06-11 Thu>
+   DEADLINE: <2015-06-12 Fri>
+
+** DONE add example project to scalameter-examples repo
+   SCHEDULED: <2015-06-11 Thu>
+   DEADLINE: <2015-06-12 Fri>
+
+
+* add a new Measurer that counts arbitrary method invocations in existing codebases
+
+** DONE outline solution
+   SCHEDULED: <2015-06-23 Tue>
+   DEADLINE: <2015-06-30 Tue>
+
+** DONE implement
+   SCHEDULED: <2015-06-30 Tue>
+   DEADLINE: <2015-07-08 Wed>
+   - [X] parametrize on classes methods name - strings, regexes and methods with args
+   - [X] write instrumented data as separate jar
+   - [X] autoboxing measurer 
+   - [X] allow to restrict autoboxing measurer on concrete primitve types
+   - [X] tests
+
+** DONE add documentation
+   SCHEDULED: <2015-07-09 Thu>
+   DEADLINE: <2015-07-10 Fri>
+
+** DONE add example project to scalameter-examples repo
+   SCHEDULED: <2015-07-09 Thu>
+   DEADLINE: <2015-07-10 Fri>
+
+
+* investigate the capabilities of JMH, and make new frontend for ScalaMeter
+
+** DONE investigate and outline solutions
+   SCHEDULED: <2015-07-10 Fri>
+   DEADLINE: <2015-07-20 Mon>
+
+** DONE implement
+   SCHEDULED: <2015-07-20 Mon>
+   DEADLINE: <2015-07-27 Mon>
+   - [X] make new annotation-based frontend in the spirit of the JMH
+   - [X] deprecated old java frontend
+   - [X] test correctness
+
+** IN-PROGRESS add documentation
+   SCHEDULED: <2015-07-28 Tue>
+   DEADLINE: <2015-07-29 Wed>
+
+** DONE add example project to scalameter-examples repo
+   SCHEDULED: <2015-07-28 Tue>
+   DEADLINE: <2015-07-29 Wed>
+
+
+* investigate, propose, and implement a Measurer/Results algebra
+  
+** IN-PROGRESS investigate and outline solution
+   SCHEDULED: <2015-07-30 Thu>
+   DEADLINE: <2015-08-04 Tue>
+
+** DONE implement
+   SCHEDULED: <2015-08-04 Tue>
+   DEADLINE: <2015-08-13 Thu>
+
+** DONE add documentation
+   SCHEDULED: <2015-08-14 Fri>
+   DEADLINE: <2015-08-17 Mon>
+
+** DONE add example project to scalameter-examples repo
+   SCHEDULED: <2015-08-14 Fri>
+   DEADLINE: <2015-08-17 Mon>

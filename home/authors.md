@@ -15,7 +15,7 @@ The interactive HTML-based performance result visualizations have been designed 
 implemented by [Roman Zoller](https://github.com/rzoller).
 
 [Krzysztof Janosz](https://github.com/kjanosz)
-is the star of the groundbreaking 0.7 release,
+is the main person behind the groundbreaking 0.7 release,
 and is the person to thank for the new annotation-based Java-compatible frontend,
 extending ScalaMeter to arbitrary data-types,
 implementing method invocation counting measurers,
