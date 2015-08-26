@@ -10,11 +10,9 @@ partof: getting-started
 
 Please follow the link for:
 
-- [ScalaMeter 0.7 Getting Started Guide](/home/gettingstarted/0.7/).
-
-- [ScalaMeter 0.5 and ScalaMeter 0.6 Getting Started Guide](/home/gettingstarted/0.5/).
-
-- [ScalaMeter 0.4 or Earlier Getting Started Guide](/home/gettingstarted/0.4/).
+- [ScalaMeter 0.7 Getting Started Guide](/home/gettingstarted/0.7/)
+- [ScalaMeter 0.5 and ScalaMeter 0.6 Getting Started Guide](/home/gettingstarted/0.5/)
+- [ScalaMeter 0.4 or Earlier Getting Started Guide](/home/gettingstarted/0.4/)
 
 Example ScalaMeter projects:
 
@@ -22,4 +20,6 @@ Example ScalaMeter projects:
 
 Developer documentation:
 
+- [Changelog](/changelog/)
 - [Release Process](/home/releasing/)
+- [Release Planing and Schedules](/planning/)
