@@ -16,7 +16,11 @@ permalink: /changelog/index.html
 - Add `JBench` and entire new annotation based Java API.
 - Add `include(new BenchTrait {})` statement used to include benchmark templates that
   are themselves not standalone tests, but can be used only with `include`.
-  See [discussion](https://groups.google.com/forum/#!topic/scalameter/D3bf57PEhDo).
+  These new `include` statements can only be invoked from `Bench.Group` benchmark type.
+  See example
+  [here](https://github.com/scalameter/scalameter-examples/include-statements).
+  For rationale, see mailing list
+  [discussion](https://groups.google.com/forum/#!topic/scalameter/D3bf57PEhDo).
 
 
 ### Changed
