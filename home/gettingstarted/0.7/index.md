@@ -291,23 +291,3 @@ it's time to get practical and do some coding.
 <div class="imagenoframe">
   <img src="/resources/images/logo-yellow-small.png"></img>
 </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
