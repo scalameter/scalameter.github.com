@@ -1,3 +1,9 @@
+---
+title: ScalaMeter Planning
+permalink: /changelog/index.html
+---
+
+
 ## [0.7] - 2015-08-26
 
 ### Added
@@ -11,6 +17,7 @@
 - Add `include(new BenchTrait {})` statement used to include benchmark templates that
   are themselves not standalone tests, but can be used only with `include`.
   See [discussion](https://groups.google.com/forum/#!topic/scalameter/D3bf57PEhDo).
+
 
 ### Changed
 
@@ -30,7 +37,9 @@
   `org.scalameter.deprecatedjapi`.
 - Add compatibility type alias `PerformanceTest` for `org.scalameter.Bench`
   in the `api` package.
-- Deprecated `include[BenchClass]` statement 
+- Deprecate `include[BenchClass]` statement in favor of `include(new BenchTrait {})`
+  (the `BenchTrait` is a normal benchmark, but must be implemented in a Scala trait).
+
 
 ### Fixed
 

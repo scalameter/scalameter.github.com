@@ -1,5 +1,6 @@
 ---
 title: ScalaMeter Planning
+permalink: /planning/index.html
 ---
 
 # ScalaMeter Planning

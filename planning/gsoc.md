@@ -1,6 +1,6 @@
 ---
 title: GSoC Projects
-permalink: gsoc.html
+permalink: /planning/gsoc.html
 ---
 
 # GSoC Projects
