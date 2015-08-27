@@ -22,4 +22,4 @@ Developer documentation:
 
 - [Changelog](/changelog/)
 - [Release Process](/home/releasing/)
-- [Release Planing and Schedules](/planning/)
+- [Release Planning and Schedules](/planning/)
