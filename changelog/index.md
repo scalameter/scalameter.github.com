@@ -18,7 +18,7 @@ permalink: /changelog/index.html
   are themselves not standalone tests, but can be used only with `include`.
   These new `include` statements can only be invoked from `Bench.Group` benchmark type.
   See example
-  [here](https://github.com/scalameter/scalameter-examples/include-statements).
+  [here](https://github.com/scalameter/scalameter-examples/tree/master/include-statements).
   For rationale, see mailing list
   [discussion](https://groups.google.com/forum/#!topic/scalameter/D3bf57PEhDo).
 
