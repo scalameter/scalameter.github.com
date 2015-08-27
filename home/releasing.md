@@ -12,7 +12,10 @@ ScalaMeter release process is automated thanks to
 [sbt-release](https://github.com/sbt/sbt-release).
 To cut a new release, follow these steps:
 
-1. Run `sbt release` inside the ScalaMeter repo.
+1. Make sure that you have the GPG key generated.
+   Check `.sbt` folder in your user home dir.
+   If it's not there, run `pgp-cmd gen-key` and then `pgp-cmd send-key`.
+2. Run `sbt release` inside the ScalaMeter repo.
 
 When a release is cut, the following steps are performed:
 
