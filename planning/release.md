@@ -1,6 +1,6 @@
 ---
 title: Release Plans
-permalink: /planning/release.html
+permalink: /planning/release/index.html
 ---
 
 # ScalaMeter Release Plans
