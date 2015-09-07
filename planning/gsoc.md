@@ -8,4 +8,4 @@ permalink: /planning/gsoc/index.html
 ## 2015 - Janosz Krzysztof
 
 - Title: Various ScalaMeter Improvements
-- [Work Schedule](schedules/chris.txt)
+- [Work Schedule](/planning/schedules/chris.txt)
