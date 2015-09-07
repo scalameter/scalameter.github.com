@@ -7,5 +7,5 @@ permalink: /planning/index.html
 
 Feature planning, schedules and TODO items related to ScalaMeter development.
 
-- [Release Plans](release.html)
-- [GSoC Projects](gsoc.html)
+- [Release Plans](release/index.html)
+- [GSoC Projects](gsoc/index.html)
