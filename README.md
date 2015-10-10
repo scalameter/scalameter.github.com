@@ -1,3 +1,3 @@
 # ScalaMeter Website
 
-[Website and documentation.](scalameter.github.io)
+[Website and documentation.](http://scalameter.github.io)
