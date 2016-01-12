@@ -70,16 +70,18 @@ Doing this requires that we manually define three parts of the testing pipeline,
 namely, the members `executor`, `reporter` and `persistor`.
 
     import org.scalameter.api._
+    import org.scalameter.picklers.Implicits._
     
-    object RangeBenchmark extends Bench {
+    object RangeBenchmark extends Bench[Double] {
     
       /* configuration */
     
       lazy val executor = LocalExecutor(
         new Executor.Warmer.Default,
-        Aggregator.min,
-        new Measurer.Default)
-      lazy val reporter = new LoggingReporter
+        Aggregator.min[Double],
+        measurer)
+      lazy val measurer = new Measurer.Default
+      lazy val reporter = new LoggingReporter[Double]
       lazy val persistor = Persistor.None
     
       /* inputs */
