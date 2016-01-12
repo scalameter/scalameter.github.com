@@ -64,7 +64,7 @@ To explore these parts in more depth, we will modify the `RangeBenchmark`
 from the
 <a href="/home/gettingstarted/0.7/simplemicrobenchmark">Simple benchmark</a> section.
 We focus on the executor part first.
-We will no longer inherit the `Bench.Quickbenchmark` class,
+We will no longer inherit the `Bench.LocalTime` class,
 but `Bench` directly.
 Doing this requires that we manually define three parts of the testing pipeline,
 namely, the members `executor`, `reporter` and `persistor`.
@@ -103,7 +103,7 @@ namely, the members `executor`, `reporter` and `persistor`.
 
 We've configured these three parts in exactly the same way
 as they are defined in the previously
-inherited `Bench.Quickbenchmark` class.
+inherited `Bench.LocalTime` class.
 The `executor` decides how the tests are executed,
 how the measurements are done and how the results
 are interpreted.
