@@ -67,7 +67,7 @@ We focus on the executor part first.
 We will no longer inherit the `Bench.LocalTime` class,
 but `Bench` directly.
 Doing this requires that we manually define three parts of the testing pipeline,
-namely, the members `executor`, `reporter` and `persistor`.
+namely, the members `executor`, `measurer` (this member is usually the same as `measurer` of `Executor`), `reporter` and `persistor`.
 
     import org.scalameter.api._
     import org.scalameter.picklers.Implicits._
@@ -110,7 +110,7 @@ The `executor` decides how the tests are executed,
 how the measurements are done and how the results
 are interpreted.
 We intend to run the tests in the same JVM instance as ScalaMeter,
-so we instantiate a `LocalExecutor`.
+so we instantiate a `LocalExecutor`. And `LocalExecutor` requires implicit evidence `Pickler`, so we import `org.scalameter.picklers.Implicits._`. About the details of `Pickler`, see the Picklers of <a href="/home/gettingstarted/0.7/persistors">Persistors</a>.
 We want to take the minimum running time of all the benchmarks run for each size,
 so we set the
 `Aggregator` for the executor to `Aggregator.min`.
