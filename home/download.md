@@ -5,7 +5,6 @@ permalink: /home/download/index.html
 ---
 
 
-
 ## Direct download
 
 The latest ScalaMeter release is **ScalaMeter 0.7** for Scala 2.10 and Scala 2.11.
@@ -70,4 +69,3 @@ You can see the current
 [build status here](https://travis-ci.org/scalameter/scalameter).
 
 [![Build Status](https://travis-ci.org/scalameter/scalameter.png?branch=master)](https://travis-ci.org/scalameter/scalameter)
-

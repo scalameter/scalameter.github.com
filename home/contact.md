@@ -5,8 +5,6 @@ permalink: /home/contact/index.html
 ---
 
 
-
-
 ### Questions?
 
 If it's a general discussion topic, please post a message on the 
@@ -15,8 +13,3 @@ If it's a general discussion topic, please post a message on the
 Otherwise, feel free to contact Alex:
 
 > <div class="equation">first name dot last name at gmail dot com</div>
-
-
-
-
-
