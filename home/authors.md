@@ -42,3 +42,6 @@ on the techniques used in ScalaMeter.
 - [@rayortigas](https://github.com/rayortigas)
 - [Dmitry Petrashko](https://github.com/DarkDimius)
 - [Krzysztof Janosz](https://github.com/kjanosz)
+
+See more at the
+[GitHub contributor list](https://github.com/scalameter/scalameter/graphs/contributors).
