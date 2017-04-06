@@ -7,7 +7,7 @@ permalink: /home/download/index.html
 
 ## Direct download
 
-The latest ScalaMeter release is **ScalaMeter 0.7** for Scala 2.10 and Scala 2.11.
+The latest ScalaMeter release is **ScalaMeter 0.8.2** for Scala 2.10 and Scala 2.11.
 
 
 ## Maven repository
