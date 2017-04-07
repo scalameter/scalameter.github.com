@@ -72,7 +72,7 @@ You could completely accurately measure one of the two, but then
 you end up with no information about the other.
 
 <div class="imageframe">
-  <img src="/resources/images/heisenberg.jpg"></img>
+  <img src="/resources/images/heisenberg.jpg">
 </div>
 
 But this is not the only example.
@@ -191,7 +191,7 @@ for maintenance and portability reasons.
 Otherwise, your code might end up looking something like the Rube Goldberg device below:
 
 <div class="imageframe">
-  <img src="/resources/images/rubegoldberg.jpg"></img>
+  <img src="/resources/images/rubegoldberg.jpg">
 </div>
 
 The picture shows a device used to remind the wearer
@@ -236,7 +236,7 @@ and what their effects are.
 A red flag is raised quickly if you try to do something you're not supposed to.
 
 <div class="imageframe">
-  <img src="/resources/images/santa.png"></img>
+  <img src="/resources/images/santa.png">
 </div>
 
 A snippet of code which tests a certain feature or
@@ -289,5 +289,5 @@ Now that we've covered all the theoretical aspects we need,
 it's time to get practical and do some coding.
 
 <div class="imagenoframe">
-  <img src="/resources/images/logo-yellow-small.png"></img>
+  <img src="/resources/images/logo-yellow-small.png">
 </div>
