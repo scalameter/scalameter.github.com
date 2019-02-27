@@ -481,7 +481,7 @@ in this case it turns off the `persistor`s for the included tests.
 
 
 <div class="imagenoframe">
-  <img src="/resources/images/logo-yellow-small.png"></img>
+  <img src="/resources/images/logo-yellow-small.png"/>
 </div>
 
 
