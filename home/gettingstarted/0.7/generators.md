@@ -143,7 +143,7 @@ In the next section we take a look at the different
 
 
 <div class="imagenoframe">
-  <img src="/resources/images/logo-yellow-small.png"></img>
+  <img src="/resources/images/logo-yellow-small.png"/>
 </div>
 
 
