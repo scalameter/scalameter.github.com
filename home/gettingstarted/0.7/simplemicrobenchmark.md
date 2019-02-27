@@ -223,15 +223,9 @@ characteristics, but we will see how to obtain it later.
 And that's it -- you just wrote your first ScalaMeter microbenchmark.
 Next, you will see how to configure test execution and test reporting.
 
-
 <div class="imagenoframe">
-  <img src="/resources/images/logo-yellow-small.png"></img>
+  <img src="/resources/images/logo-yellow-small.png"/>
 </div>
-
-
-
-
-
 
 
 
