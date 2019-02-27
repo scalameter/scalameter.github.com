@@ -169,12 +169,12 @@ The probability that each of them will perform badly greatly decreases.
 Different allocation patterns can yield very different results.
 
 3. We can add artificial Gaussian noise to each measurement in the series (this is
-controlled by the `exec.noise.magnitude` parameter).
+controlled by the `exec.noise.magnitude` parameter; [default value](https://github.com/scalameter/scalameter/blob/master/scalameter-core/src/main/scala/org/scalameter/keys.scala#L184)).
 As a result, the confidence interval of each test will increase, making the tests less
 sensitive to random variations.
 
 4. We can artifically increase confidence intervals while doing a regression check (this
-is controlled by the `reports.regression.noiseMagnitude` parameter).
+is controlled by the `reports.regression.noiseMagnitude` parameter; [default value](https://github.com/scalameter/scalameter/blob/master/scalameter-core/src/main/scala/org/scalameter/keys.scala#L153)).
 This again results in the tests being less sensitive to random variations.
 
 We can experiment easily with the first option.
