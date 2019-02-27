@@ -289,5 +289,5 @@ Now that we've covered all the theoretical aspects we need,
 it's time to get practical and do some coding.
 
 <div class="imagenoframe">
-  <img src="/resources/images/logo-yellow-small.png">
+  <img src="/resources/images/logo-yellow-small.png"/>
 </div>
