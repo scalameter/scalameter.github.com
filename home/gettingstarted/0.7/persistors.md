@@ -66,3 +66,7 @@ You will not have to implement a custom `Pickler`,
 but you will only be able to use the `SerializationPersistor`.
 
 A `Pickler` has to have a no-argument constructor, or be a top-level object.
+
+<div class="imagenoframe">
+  <img src="/resources/images/logo-yellow-small.png"/>
+</div>
