@@ -219,5 +219,5 @@ A complete example of an SBT project using ScalaMeter from Java is available in 
 [ScalaMeter examples repo](https://github.com/scalameter/scalameter-examples/blob/master/jbench/src/bench/java/org/scalameter/examples/ListBenchmark.java).
 
 <div class="imagenoframe">
-  <img src="/resources/images/logo-yellow-small.png"></img>
+  <img src="/resources/images/logo-yellow-small.png"/>
 </div>
