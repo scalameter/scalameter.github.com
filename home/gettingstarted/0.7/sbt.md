@@ -108,11 +108,9 @@ For example:
     > test-only mypackage.MyScalaMeterTestName -- -CscopeFilter 'Seq\.foreach.*'
 
 
-
 <div class="imagenoframe">
-  <img src="/resources/images/logo-yellow-small.png"></img>
+  <img src="/resources/images/logo-yellow-small.png"/>
 </div>
-
 
 
 
