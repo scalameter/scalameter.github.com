@@ -7,7 +7,9 @@ permalink: /home/download/index.html
 
 ## Direct download
 
-The latest ScalaMeter release is **ScalaMeter 0.8.2** for Scala 2.10 and Scala 2.11.
+The latest ScalaMeter release is **ScalaMeter 0.17** for Scala 2.11, Scala 2.12 and Scala 2.13.
+
+In case this page was not updated, please consider checking the [Maven repositories too]().
 
 
 ## Maven repository
@@ -18,7 +20,7 @@ ScalaMeter is available for download from Maven Central!
 <dependency>
     <groupId>com.storm-enroute</groupId>
     <artifactId>scalameter_2.11</artifactId>
-    <version>0.8.2</version>
+    <version>0.17</version>
     <exclusions>
         <exclusion>
             <groupId>org.mongodb</groupId>
@@ -40,11 +42,20 @@ just add the following lines to `build.sbt`:
     resolvers += "Sonatype OSS Snapshots" at
       "https://oss.sonatype.org/content/repositories/releases"
     
-    libraryDependencies += "com.storm-enroute" %% "scalameter" % "0.8.2"
+    libraryDependencies += "com.storm-enroute" %% "scalameter" % "0.17"
 
     testFrameworks += new TestFramework("org.scalameter.ScalaMeterFramework")
     
     parallelExecution in Test := false
+
+To make sure that you are using the JLine-based output about the benchmark execution,
+add the following to your `build.sbt`:
+
+    fork := true
+    
+    outputStrategy := Some(StdoutOutput)
+    
+    connectInput := true
 
 To use `scalameter-core` module for
 [lightweight inline benchmarking](/home/gettingstarted/0.7/inline/), add the following:
@@ -53,7 +64,7 @@ To use `scalameter-core` module for
       "https://oss.sonatype.org/content/repositories/releases"
 
     libraryDependencies +=
-      "com.storm-enroute" %% "scalameter-core" % "0.8.2"
+      "com.storm-enroute" %% "scalameter-core" % "0.17"
 
 
 ## Source code
@@ -72,7 +83,7 @@ enter the following to your `build.sbt`:
       "https://oss.sonatype.org/content/repositories/snapshots"
     
     libraryDependencies +=
-      "com.storm-enroute" %% "scalameter" % "0.9-SNAPSHOT" % "test"
+      "com.storm-enroute" %% "scalameter" % "0.18-SNAPSHOT" % "test"
     
     testFrameworks += new TestFramework("org.scalameter.ScalaMeterFramework")
     
