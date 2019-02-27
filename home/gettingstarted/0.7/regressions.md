@@ -408,9 +408,8 @@ In the next section we examine different executors in more detail.
 
 
 <div class="imagenoframe">
-  <img src="/resources/images/logo-yellow-small.png"></img>
+  <img src="/resources/images/logo-yellow-small.png"/>
 </div>
-
 
 
 
