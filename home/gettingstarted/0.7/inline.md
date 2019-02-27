@@ -69,3 +69,6 @@ inline benchmarks act as if they were run in a `LocalExecutor`.
 
 More examples [here](https://github.com/scalameter/scalameter/blob/master/src/test/scala/org/scalameter/inlinebenches/InlineBenchmarkTest.scala).
 
+<div class="imagenoframe">
+  <img src="/resources/images/logo-yellow-small.png"/>
+</div>
