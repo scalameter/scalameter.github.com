@@ -3,6 +3,12 @@ title: ScalaMeter Planning
 permalink: /changelog/index.html
 ---
 
+## [0.17] - 2019-02-27
+
+- Add JLine support and a much nicer progress and output formatter.
+- Clean up benchmark templates and make them more consistent.
+- Add `@disabled` annotation.
+- Various minor improvements.
 
 ## [0.7] - 2015-08-26
 
