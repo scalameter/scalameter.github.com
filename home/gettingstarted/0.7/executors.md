@@ -253,7 +253,7 @@ You can take a look at the ScalaMeter API or the source code to figure out how d
 measurers work in more detail.
 
 <div class="imagenoframe">
-  <img src="/resources/images/logo-yellow-small.png"></img>
+  <img src="/resources/images/logo-yellow-small.png"/>
 </div>
 
 
