@@ -299,9 +299,8 @@ level overview of the regression reporter, we show a coding example in the next
 
 
 <div class="imagenoframe">
-  <img src="/resources/images/logo-yellow-small.png"></img>
+  <img src="/resources/images/logo-yellow-small.png"/>
 </div>
-
 
 
 
