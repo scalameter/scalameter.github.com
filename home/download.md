@@ -9,7 +9,7 @@ permalink: /home/download/index.html
 
 The latest ScalaMeter release is **ScalaMeter 0.17** for Scala 2.11, Scala 2.12 and Scala 2.13.
 
-In case this page was not updated, please consider checking the [Maven repositories too]().
+Please check the [Maven repositories too](https://mvnrepository.com/artifact/com.storm-enroute/scalameter), just in case this page was not updated.
 
 
 ## Maven repository
