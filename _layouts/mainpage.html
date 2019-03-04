@@ -99,6 +99,30 @@ layout: base
 
     <div class="grid_16"><br/></div>
 
+    <div class="grid_16">
+
+      <div class="grid_8 alpha">
+        {% capture main_annotation %}
+          {% include annotation-example.md %}
+        {% endcapture %}
+        {{ main_test | markdownify }}
+      </div>
+      <div class="grid_6 push_1">
+        <br/>
+        <br/>
+        ScalaMeter tests can also be defined using an annotation-based declaration style,
+        where each benchmark is an annotated method.
+        This style is usable from both Java and Scala,
+        and is more friendly towards users familiar with JUnit and similar testing frameworks.
+        <br/>
+      </div>
+      <div class="grid_3 omega">
+      </div>
+
+    </div>
+
+    <div class="grid_16"><br/></div>
+
     <div class="grid_16"><h1>Features</h1></div>
 
     <div class="grid_8">
