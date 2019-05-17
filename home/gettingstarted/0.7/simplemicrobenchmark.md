@@ -79,7 +79,7 @@ multiple values.
 However, ScalaMeter generators do not generate random or arbitrary values --
 the values they produce are always the same, ordered and well-defined.
 
-ScalaCheck generators can be roughly divided into 2 groups --
+ScalaMeter generators can be roughly divided into 2 groups --
 *basic* and *composed* generators.
 There exist a number of basic generators already defined for you.
 One of them is called `Gen.range`, and it generates integers in a specified range.
