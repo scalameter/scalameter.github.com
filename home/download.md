@@ -7,7 +7,7 @@ permalink: /home/download/index.html
 
 ## Direct download
 
-The latest ScalaMeter release is **ScalaMeter 0.17** for Scala 2.11, Scala 2.12 and Scala 2.13.
+The latest ScalaMeter release is **ScalaMeter 0.18** for Scala 2.11, Scala 2.12 and Scala 2.13.
 
 Please check the [Maven repositories too](https://mvnrepository.com/artifact/com.storm-enroute/scalameter), just in case this page was not updated.
 
@@ -20,7 +20,7 @@ ScalaMeter is available for download from Maven Central!
 <dependency>
     <groupId>com.storm-enroute</groupId>
     <artifactId>scalameter_2.11</artifactId>
-    <version>0.17</version>
+    <version>0.18</version>
     <exclusions>
         <exclusion>
             <groupId>org.mongodb</groupId>
@@ -42,7 +42,7 @@ just add the following lines to `build.sbt`:
     resolvers += "Sonatype OSS Snapshots" at
       "https://oss.sonatype.org/content/repositories/releases"
     
-    libraryDependencies += "com.storm-enroute" %% "scalameter" % "0.17"
+    libraryDependencies += "com.storm-enroute" %% "scalameter" % "0.18"
 
     testFrameworks += new TestFramework("org.scalameter.ScalaMeterFramework")
     
@@ -64,7 +64,7 @@ To use `scalameter-core` module for
       "https://oss.sonatype.org/content/repositories/releases"
 
     libraryDependencies +=
-      "com.storm-enroute" %% "scalameter-core" % "0.17"
+      "com.storm-enroute" %% "scalameter-core" % "0.18"
 
 
 ## Source code
@@ -83,7 +83,7 @@ enter the following to your `build.sbt`:
       "https://oss.sonatype.org/content/repositories/snapshots"
     
     libraryDependencies +=
-      "com.storm-enroute" %% "scalameter" % "0.18-SNAPSHOT" % "test"
+      "com.storm-enroute" %% "scalameter" % "0.19-SNAPSHOT" % "test"
     
     testFrameworks += new TestFramework("org.scalameter.ScalaMeterFramework")
     
